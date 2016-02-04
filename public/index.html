@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html ng-app="MKSApp">
+<head>
+    <meta charset="utf-8">
+
+    <title>Make Paul Smile</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+    <link href="game.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div ng-controller="OpeningsController">    
+
+		<ul>
+			<li class="group" ng-repeat="group in groups"> 
+				<a ng-click="learnGroup(group)"> {{ group }} </a>    	
+			</li>
+		</ul>
+
+		<ul>
+			<li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
+				<a href="#/learning/{{learningGroup}}/{{opening.name}}"> {{ opening.name }} </a> 
+			</li>
+		</ul>
+
+	</div>
+
+
+
+    <div ng-view></div>
+
+
+
+    <script src="app.js"></script>
+    <script src="router.js"></script>
+
+    <script src="services/openings_service.js"></script>
+
+    <script src="controllers/openings_controller.js"></script>
+    <script src="controllers/learning_controller.js"></script>
+
+
+</body>
+</html>

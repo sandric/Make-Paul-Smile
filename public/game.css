@@ -1,0 +1,115 @@
+.game #board {
+	width: 400px;
+	height: 400px;
+	float: left;
+	position: relative;
+	border: 1px solid black;
+}
+
+.game #board .cell {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	float: left;
+	box-sizing: border-box;
+	background-size: contain;
+}
+
+.game #board .white-cell {
+	background-color: white;
+}
+
+.game #board .black-cell {
+	background-color: grey;
+}
+
+.game #board .selected-cell {
+	background-color: green;
+}
+
+.game #board .valid-cell {
+	background-color: blue;
+}
+
+.game #board .expected-cell {
+	background-color: yellow;
+}
+
+.game #board .piece {
+	position: absolute;
+	box-sizing: border-box;
+	width: 100px;
+	height: 100px;
+}
+
+.game #control {
+	float: left;
+	margin-left: 2em;
+	font-size: small;
+	width: 200pt;
+}
+
+.game #control .buttons {
+	text-align: center;
+	box-sizing: border-box;
+	display: none;
+}
+
+.game #control .buttons .button {
+	float: left;
+	background-color: grey;
+	width: 4em;
+	margin-right: 1em;
+	padding: 2pt 5pt;
+	color: white;
+	text-align: center;
+}
+
+.game #control .buttons .enabled {
+	background-color: blue;
+}
+
+.game #control .buttons .enabled:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.game #control .buttons:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.game #control .buttons.selected {
+	display: block;
+}
+
+.game #control .buttons #openingsLeftLabel {
+	margin-right: 1em;
+}
+
+.game #control .buttons #ratingLabel {
+	margin-right: 1em;
+}
+
+.game #control #info {
+	margin-top: 10pt;
+}
+
+.game #control #moves {
+	margin-top: 10pt;
+}
+
+.game #control #moves .move {
+	clear: both;
+}
+
+.game #control #moves .move .white {
+	float: left;
+	padding-right: 1em;
+}
+
+.game #control #moves .move .black {
+	float: right;
+	padding-left: 1em;
+}
