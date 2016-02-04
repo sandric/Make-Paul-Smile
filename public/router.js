@@ -19,5 +19,11 @@ app.config(function ($routeProvider) {
                 templateUrl: '/views/training.html'
             })
 
+        .when('/results',
+            {
+                controller: 'ResultsController',
+                templateUrl: '/views/results.html'
+            })
+
         .otherwise({ redirectTo: '/groups/' });
 });

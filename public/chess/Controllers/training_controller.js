@@ -9,17 +9,24 @@ class TrainingController {
 	}
 
 	generate() {
+		if (this._openings.length < 1) 
+			this.endGame();
+		else {
+			$("#moves").html("");
+			this.movesMade = 0;
+			this.getRandomOpening();
 
-		$("#moves").html("");
-		this.movesMade = 0;
-		this.getRandomOpening();
+			this.displayOpeningsName();
+			this.displayOpeningsLeftLabel();
 
-		this.displayOpeningsName();
-		this.displayOpeningsLeftLabel();
+			this._board_view = new BoardView(this._opening, "training", this);
 
-		this._board_view = new BoardView(this._opening, "training", this);
+			this.registerOnClickListeners();
+		}
+	}
 
-		this.registerOnClickListeners();
+	endGame() {
+		window.location.href = "#/results/";
 	}
 
 
@@ -69,7 +76,7 @@ class TrainingController {
 
 
 	displayOpeningsLeftLabel() {
-		$("#openingsLeftLabel").html(this._openings.length);
+		$("#openingsLeftLabel").html(this._openings.length + 1);
 	}
 
 
@@ -123,7 +130,7 @@ class TrainingController {
 
 
 	onEndButtonPressed(event) {
-		
+		event.data.self.endGame();	
 	}
 
 
