@@ -1,21 +1,32 @@
-<div id="main">
-	<h1>Select opening</h1>
+<div class="openings">
+	<ul>
+		<li class="group" ng-repeat="group in groups"> 
+			<a href="#/groups/{{group}}/"> {{ group }} </a>    	
+		</li>
+	</ul>
 
-	<div class="game">
-		<div id="board"></div>
+	<ul>
+		<li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
+			<a href="#/groups/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
+		</li>
+	</ul>
+</div>
 
-		<div id="control">
 
-			<div class="buttons" id="training_buttons">
-				<div class="button button-end enabled">End</div>
-				<div class="button button-skip enabled">Skip</div>
-				<div id="openingsLeftLabel">0</div>
-				<div class="button button-hint enabled">Hint</div>
-				<div id="ratingLabel">0</div>
-			</div>
+<div class="game">
 
-			<div id="info"></div>
-			<div id="moves"></div>
+	<h1>{{ opening.name }}</h1>
+
+	<div id="board"></div>
+
+	<div id="control">
+		<div class="buttons" id="learning_buttons">
+			<div class="button button-reload enabled">Reload</div>
+			<div class="button button-play enabled">Play</div>
+			<div class="button button-step enabled">Step</div>
 		</div>
+
+		<div id="info"></div>
+		<div id="moves"></div>
 	</div>
 </div>
