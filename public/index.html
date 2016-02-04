@@ -19,23 +19,6 @@
 
 <body>
 
-	<div class="openings" ng-controller="OpeningsController">    
-
-		<ul>
-			<li class="group" ng-repeat="group in groups"> 
-				<a ng-click="learnGroup(group)"> {{ group }} </a>    	
-			</li>
-		</ul>
-
-		<ul>
-			<li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
-				<a href="#/learning/{{learningGroup}}/{{opening.name}}"> {{ opening.name }} </a> 
-			</li>
-		</ul>
-
-	</div>
-
-
 
     <div ng-view></div>
 

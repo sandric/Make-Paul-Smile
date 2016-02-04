@@ -1,4 +1,22 @@
+<div class="openings">
+	<ul>
+		<li class="group" ng-repeat="group in groups"> 
+			<a href="#/groups/{{group}}/"> {{ group }} </a>    	
+		</li>
+	</ul>
+
+	<ul>
+		<li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
+			<a href="#/groups/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
+		</li>
+	</ul>
+</div>
+
+
 <div class="game">
+
+	<h1>{{ opening.name }}</h1>
+
 	<div id="board"></div>
 
 	<div id="control">

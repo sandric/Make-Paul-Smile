@@ -5,6 +5,11 @@ body {
 .openings {
 	float: left;
 	margin-right: 20px;
+	margin-top: 25px;
+}
+
+.game {
+	float: left;
 }
 
 .game #board {
@@ -60,7 +65,6 @@ body {
 .game #control .buttons {
 	text-align: center;
 	box-sizing: border-box;
-	//display: none;
 }
 
 .game #control .buttons .button {

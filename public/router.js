@@ -1,12 +1,18 @@
-
 app.config(function ($routeProvider) {
     $routeProvider
 
-        .when('/learning/:group_name/:opening_name',
+        .when('/groups/:group_name/learn/:opening_name',
             {
                 controller: 'LearningController',
                 templateUrl: '/views/learning.html'
             })
 
-        //.otherwise({ redirectTo: '/' });
+        .when('/groups/:group_name?',
+            {
+                controller: 'OpeningsController',
+                templateUrl: '/views/openings.html'
+            })
+
+
+        .otherwise({ redirectTo: '/groups/' });
 });

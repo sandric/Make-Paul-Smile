@@ -1,30 +1,55 @@
-app.service('OpeningsService', function ($http) {
+app.service('OpeningsService', function ($http, $rootScope) {
 
     this.getGroups = function () {
-        return [
-                "Open",
-                "Semi-open",
-                "Closed",
-                "Semi-closed",
-                "Indian-defence",
-                "Flank"
+        $rootScope.groups = [
+            "Open",
+            "Semi-open",
+            "Closed",
+            "Semi-closed",
+            "Indian-defence",
+            "Flank"
         ];
     };
 
     this.getOpenings = function (successCallback, errorCallback) {
-
-        $http({
-            method: 'GET',
-            url: '/api/openings/'
-        }).then(successCallback, errorCallback);
+        if ($rootScope.openings) {
+            if (successCallback)
+                successCallback($rootScope.openings);
+        }
+        else
+            $http({
+                method: 'GET',
+                url: '/api/openings/'
+            }).then(function(response){
+                        $rootScope.openings = response.data;
+                        if (successCallback)
+                            successCallback($rootScope.openings);
+                    }, 
+                    function(response) {
+                        console.log("Error: " + error);
+                        if (errorCallback)
+                            errorCallback(response);
+                    });
     };
 
-    this.getOpening = function (openingName, successCallback, errorCallback) {
+    this.getOpening = function (openingName) {
+        var result = $rootScope.openings.filter(function(opening) {
+            return opening.name == openingName;
+        });
+        
+        return result[0];
+    }
 
-        $http({
-            method: 'GET',
-            url: '/api/openings/' + openingName
-        }).then(successCallback, errorCallback);
-    };
 
+
+
+
+    this.setLearningGroup = function(learningGroup) {
+        console.log("setting: " + learningGroup);
+        $rootScope.learningGroup = learningGroup;
+    }
+
+
+
+    $rootScope.learningGroup = 'Flank';
 });

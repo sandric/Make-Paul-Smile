@@ -1,28 +1,25 @@
-app.controller('LearningController', function ($scope, $rootScope, $routeParams, OpeningsService) {
-
-    this.getOpening = function(openingName) {
-        OpeningsService.getOpening( openingName,
-                                    function(response) {
-                                        $scope.opening = response.data;
+app.controller('LearningController', function ($scope, $routeParams, OpeningsService) {
 
 
-                                        $scope.learning_game = new LearningController($scope.opening);
+    OpeningsService.getGroups();
 
 
-                                    }, function(response) {
-                                        console.log("Error: " + response);
-                                    });
-    }
+    OpeningsService.getOpenings(
+        function(openings) {
+
+            $scope.opening = OpeningsService.getOpening($routeParams.opening_name);
 
 
-    if ($routeParams.opening_name) {
+            $scope.learning_game = new LearningController(
+                                            $scope.opening.name,
+                                            $scope.opening.moves,
+                                            $scope.opening.annotations,
+                                            $scope.opening.startingMove,
+                                            $scope.opening.details
+                                        );
+        });
 
-        $rootScope.learningGroup = $routeParams.group_name;
 
+    OpeningsService.setLearningGroup($routeParams.group_name);
 
-        
-        $scope.openingName = $routeParams.opening_name;
-
-        this.getOpening($scope.openingName);
-    }
 });

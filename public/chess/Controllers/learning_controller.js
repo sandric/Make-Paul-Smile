@@ -1,29 +1,35 @@
 class LearningController {
 
+	constructor(name, movesNotations, movesAnnotations, startingMove, details) {
 
-	constructor(openingName) {
-		this.generate(openingName);
+		this._name = name;
+		this._movesNotations = movesNotations;
+		this._movesAnnotations = movesAnnotations;
+		this._startingMove = startingMove;
+		this._details = details;
+
+		this.generate();
 	}
 
-	generate(openingName) {
+	generate() {
 
-		$(".button-play").addClass('enabled');
-		$(".button-step").addClass('enabled');
-		$(".button-play").html("Play");
+        $(".button-play").addClass('enabled');
+        $(".button-step").addClass('enabled');
+        $(".button-play").html("Play");
 
-		$("#moves").html("");
+        $("#moves").html("");
 
-		this._isPlaying = false;
+        this._isPlaying = false;
 
-		this.movesMade = 0;
+        this.movesMade = 0;
 
-		this._opening = Opening.getOpeningByName(openingName);
+        this._opening = new Opening(this._name, this._movesNotations, this._movesAnnotations, this._startingMove, this._details);
 
-		this.displayOpeningsName();
+        this.displayOpeningsName();
 
-		this._board_view = new BoardView(this._opening, "learning", this);
+        this._board_view = new BoardView(this._opening, "learning", this);
 
-		this.registerOnClickListeners();
+        this.registerOnClickListeners();
 	}
 
 	registerOnClickListeners() {
@@ -32,6 +38,9 @@ class LearningController {
 		$(".button-reload").on("click", {self: this}, this.onReloadButtonPressed);
 		$(".button-play").on("click", {self: this}, this.onPlayButtonPressed);
 		$(".button-step").on("click", {self: this}, this.onStepButtonPressed);
+
+
+		$(".cell").off('click');
 	}
 
 
