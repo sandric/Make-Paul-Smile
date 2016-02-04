@@ -19,7 +19,7 @@
 
 <body>
 
-	<div ng-controller="OpeningsController">    
+	<div class="openings" ng-controller="OpeningsController">    
 
 		<ul>
 			<li class="group" ng-repeat="group in groups"> 
@@ -38,6 +38,21 @@
 
 
     <div ng-view></div>
+
+
+    <script src="chess/Controllers/learning_controller.js"></script>
+    <script src="chess/Controllers/training_controller.js"></script>
+
+    <script src="chess/Models/board.js"></script>
+    <script src="chess/Models/cell.js"></script>
+    <script src="chess/Models/move.js"></script>
+    <script src="chess/Models/opening.js"></script>
+    <script src="chess/Models/piece.js"></script>
+    <script src="chess/Models/ruler.js"></script>
+
+
+    <script src="chess/Views/board_view.js"></script>
+    <script src="chess/Views/cell_view.js"></script>
 
 
 

@@ -22,7 +22,7 @@ class Piece {
 	}
 
 	imagePath() {
-		return "/assets/pieces/" + this._side + "/" + this._type + ".svg"
+		return "/images/pieces/" + this._side + "/" + this._type + ".svg"
 	}
 
 	urlPath() {

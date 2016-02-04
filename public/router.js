@@ -5,7 +5,7 @@ app.config(function ($routeProvider) {
         .when('/learning/:group_name/:opening_name',
             {
                 controller: 'LearningController',
-                templateUrl: '/views/opening.html'
+                templateUrl: '/views/learning.html'
             })
 
         //.otherwise({ redirectTo: '/' });
