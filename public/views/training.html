@@ -9,15 +9,24 @@
 
 <div class="game">
 
-	<h1>{{ opening.name }}</h1>
+	<h1></h1>
 
 	<div id="board"></div>
 
 	<div id="control">
-		<div class="buttons" id="learning_buttons">
-			<div class="button button-reload enabled">Reload</div>
-			<div class="button button-play enabled">Play</div>
-			<div class="button button-step enabled">Step</div>
+
+		<div>
+			<label>Scope:</label> <label id="ratingLabel">0</label>
+		</div>
+		<div>
+			<label>Openings left:</label> <label id="openingsLeftLabel">0</label>
+		</div>
+
+
+		<div class="buttons" id="training_buttons">
+			<div class="button button-end enabled">End</div>
+			<div class="button button-skip enabled">Skip</div>
+			<div class="button button-hint enabled">Hint</div>
 		</div>
 
 		<div id="info"></div>

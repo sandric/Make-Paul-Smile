@@ -1,19 +1,21 @@
 class TrainingController {
 
 
-	constructor(selectedOpeningGroup) {
+	constructor(openings) {
 		this._score = 0;
-		this._selectedOpeningGroup = selectedOpeningGroup;
+		this._openings = openings;
 
 		this.generate();
 	}
 
 	generate() {
-		this._openingNames = Opening.getOpeningNamesByGroupName(this._selectedOpeningGroup);
+
 		$("#moves").html("");
 		this.movesMade = 0;
 		this.getRandomOpening();
+
 		this.displayOpeningsName();
+		this.displayOpeningsLeftLabel();
 
 		this._board_view = new BoardView(this._opening, "training", this);
 
@@ -32,8 +34,19 @@ class TrainingController {
 
 	
 	getRandomOpening(){
-		var randomIndex = Math.floor((Math.random() * this._openingNames.length));
-		this._opening = Opening.getOpeningByName(this._openingNames[randomIndex]);
+
+		var randomIndex = Math.floor((Math.random() * this._openings.length));
+
+		this._opening = new Opening(this._openings[randomIndex].name,
+                                    this._openings[randomIndex].moves,
+                                    this._openings[randomIndex].annotations,
+                                    this._openings[randomIndex].startingMove,
+                                    this._openings[randomIndex].details);
+		
+		this._openings.splice(randomIndex, 1);
+
+		if ($('.opening')[randomIndex])
+			$('.opening')[randomIndex].remove();
 	}
 
 
@@ -55,8 +68,14 @@ class TrainingController {
 
 
 
+	displayOpeningsLeftLabel() {
+		$("#openingsLeftLabel").html(this._openings.length);
+	}
+
+
+
 	displayOpeningsName() {
-		$("#main h1").html("Training " + this._opening.name)
+		$(".game h1").html("Training " + this._opening.name)
 	}
 
 
@@ -80,6 +99,7 @@ class TrainingController {
 
 	onPlayerMadeMove() {
 		console.log("PlayerMadeMove");
+		$(".button-hint").addClass('enabled');
 		this.increaseScore();
 	}
 
@@ -97,7 +117,7 @@ class TrainingController {
 
 	onGameEnded() {
 		this._board_view.stop();
-		$(".button-hint").removeClass('enabled');
+		this.generate();
 	}		
 
 
@@ -106,12 +126,17 @@ class TrainingController {
 		
 	}
 
+
 	onSkipButtonPressed(event) {
 		event.data.self.generate();	
 	}
 
 	onHintButtonPressed(event) {
-		event.data.self._board_view.highlightHint();
-		event.data.self.decreaseScore();
+		if ($(this).hasClass("enabled")) {
+			event.data.self._board_view.highlightHint();
+			event.data.self.decreaseScore();
+
+			$(".button-hint").removeClass('enabled');
+		}
 	}
 }

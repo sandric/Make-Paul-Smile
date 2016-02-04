@@ -4,7 +4,11 @@ app.controller('TrainingController', function ($scope, $routeParams, OpeningsSer
                                 function(openings) {
 
                                     $scope.trainingOpenings = OpeningsService.getOpeningsByGroup($routeParams.group_name);
+
                                     
+
+                                    $scope.training_game = new TrainingController($scope.trainingOpenings);
+
                                     /*
                                     $scope.learning_game = new LearningController(
                                                                     $scope.opening.name,
