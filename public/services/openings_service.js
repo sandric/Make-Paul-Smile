@@ -32,11 +32,19 @@ app.service('OpeningsService', function ($http, $rootScope) {
                     });
     };
 
+
+    this.getOpeningsByGroup = function(groupName) {
+        return $rootScope.openings.filter(function(opening) {
+            return opening.group == groupName;
+        });
+    }
+
+
     this.getOpening = function (openingName) {
         var result = $rootScope.openings.filter(function(opening) {
             return opening.name == openingName;
         });
-        
+
         return result[0];
     }
 
