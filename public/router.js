@@ -19,10 +19,22 @@ app.config(function ($routeProvider) {
                 templateUrl: '/views/training.html'
             })
 
-        .when('/results',
+        .when('/results/:user_id/:game_id',
             {
                 controller: 'ResultsController',
                 templateUrl: '/views/results.html'
+            })
+
+		.when('/top',
+            {
+                controller: 'TopController',
+                templateUrl: '/views/top.html'
+            })
+
+		.when('/profile',
+            {
+                controller: 'UserController',
+                templateUrl: '/views/user.html'
             })
 
         .otherwise({ redirectTo: '/groups/' });

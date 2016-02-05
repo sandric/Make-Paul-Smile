@@ -26,7 +26,7 @@ class TrainingController {
 	}
 
 	endGame() {
-		window.location.href = "#/results/";
+		window.location.href = "#/results/7/7";
 	}
 
 

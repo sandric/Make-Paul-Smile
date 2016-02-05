@@ -1,1 +1,33 @@
-<h1>Well done!</h1>
+<div class="openings">
+	<ul>
+		<li class="group" ng-repeat="group in groups"> 
+			<a href="#/groups/{{group}}/"> {{ group }} </a>    	
+		</li>
+	</ul>
+</div>
+
+
+<div class="game">
+
+	<h1>{{ gameResults.group }} game results:</h1>
+
+	<div class="results">
+		<div>
+			<label>Total Score:</label>
+			<label>{{ gameResults.score }}</label>
+		</div>
+		<div>
+			<label>Previous Score:</label>
+			<label>{{ gameResults.previous_score }}</label>
+		</div>
+		<div>
+			<label>Best Score:</label>
+			<label>{{ gameResults.best_score }}</label>
+		</div>
+		<div>
+			<label>Best Username:</label>
+			<label>{{ gameResults.best_username }}</label>
+		</div>
+	</div>
+
+</div>

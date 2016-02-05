@@ -21,6 +21,84 @@ app.use(methodOverride());
 
 
 
+app.get('/api/users/:user_id', function(req, res) {
+	var user =  {
+		name: "Tosha",
+		best_game: {
+			group: "Flank",
+			score: 54
+		},
+		best_games_by_group: [
+			{
+				group: "Semi-open",
+				score: 14
+			},
+			{
+				group: "Semi-closed",
+				score: 12
+			},
+			{
+				group: "Flank",
+				score: 17
+			}
+		]
+	};
+
+	res.json(user);
+});
+
+
+app.get('/api/top', function(req, res) {
+	var top =  [
+		{
+			username: "Soso 1",
+			group: "Open",
+			score: 17
+		},
+
+		{
+			username: "Soso 2",
+			group: "Open",
+			score: 18
+		},
+
+		{
+			username: "Soso 3",
+			group: "Semi-closed",
+			score: 19
+		},
+
+		{
+			username: "Soso 4",
+			group: "Flank",
+			score: 20
+		},
+
+		{
+			username: "Soso 5",
+			group: "Semi-open",
+			score: 21
+		},
+
+	];
+
+	res.json(top);
+});
+
+
+app.get('/api/users/:user_id/games/:game_id', function(req, res) {
+	var results =  {
+		group: "Open",
+		score: 17,
+		previous_score: 6,
+		best_username: "Soso",
+		best_score: 19
+	};
+
+	res.json(results);
+});
+
+
 app.get('/api/openings', function(req, res) {
 
 	var openings = [
