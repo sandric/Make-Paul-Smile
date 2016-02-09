@@ -31,8 +31,8 @@
             
             <ul>
                 <li class="group" ng-repeat="group in groups"> 
-                    <a href="#/{{group}}/"> {{ group }} </a> 
-                    <a href="#/{{group}}/train"> train </a>      
+                    <a href="#/groups/{{group}}/"> {{ group }} </a> 
+                    <a href="#/groups/{{group}}/train"> train </a>      
                 </li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
             <h3>Openings</h3>
             <ul>
                 <li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
-                    <a href="#/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
+                    <a href="#/groups/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
                 </li>
             </ul>
         </div>

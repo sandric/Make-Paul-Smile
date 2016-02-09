@@ -1,14 +1,11 @@
 app.controller('LearningController', function ($scope, $routeParams, OpeningsService) {
 
-
     OpeningsService.getGroups();
-
 
     OpeningsService.getOpenings(
         function(openings) {
 
             $scope.opening = OpeningsService.getOpening($routeParams.opening_name);
-
 
             $scope.learning_game = new LearningController(
                                             $scope.opening.name,
@@ -18,8 +15,4 @@ app.controller('LearningController', function ($scope, $routeParams, OpeningsSer
                                             $scope.opening.details
                                         );
         });
-
-
-    OpeningsService.setLearningGroup($routeParams.group_name);
-
 });

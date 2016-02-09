@@ -1,19 +1,19 @@
 app.config(function ($routeProvider) {
     $routeProvider
 
-        .when('/:group_name?',
+        .when('/groups/:group_name?',
             {
                 controller: 'IndexController',
                 templateUrl: '/views/index.html'
             })
 
-        .when('/:group_name/learn/:opening_name',
+        .when('/groups/:group_name/learn/:opening_name',
             {
                 controller: 'LearningController',
                 templateUrl: '/views/learning.html'
             })
 
-        .when('/:group_name/train',
+        .when('/groups/:group_name/train',
             {
                 controller: 'TrainingController',
                 templateUrl: '/views/training.html'

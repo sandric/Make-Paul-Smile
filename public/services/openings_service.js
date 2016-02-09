@@ -1,6 +1,9 @@
-app.service('OpeningsService', function ($http, $rootScope) {
+app.service('OpeningsService', function ($http, $rootScope, $routeParams) {
 
     this.getGroups = function () {
+        
+        this.setLearningGroup($routeParams.group_name);
+
         $rootScope.groups = [
             "Open",
             "Semi-open",
