@@ -1,6 +1,6 @@
 app.controller('IndexController', function ($scope, OpeningsService) {
 
-	OpeningsService.getGroups();
+	OpeningsService.setGroups();
 
-    OpeningsService.getOpenings();
+    OpeningsService.setOpenings();
 });

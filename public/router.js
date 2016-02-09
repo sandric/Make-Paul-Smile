@@ -37,5 +37,12 @@ app.config(function ($routeProvider) {
                 templateUrl: '/views/user.html'
             })
 
+        .when('/',
+            {
+                controller: 'LandingController',
+                templateUrl: '/views/landing.html'
+            })
+
+
         .otherwise({ redirectTo: '/' });
 });

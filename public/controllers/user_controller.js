@@ -1,6 +1,6 @@
 app.controller('UserController', function ($scope, OpeningsService, UsersService) {
 
-	OpeningsService.getGroups();
+	OpeningsService.setGroups();
 
     UsersService.getUser(	7,
     						function(user) {

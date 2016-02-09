@@ -1,6 +1,6 @@
 app.service('OpeningsService', function ($http, $rootScope, $routeParams) {
 
-    this.getGroups = function () {
+    this.setGroups = function () {
         
         this.setLearningGroup($routeParams.group_name);
 
@@ -14,7 +14,13 @@ app.service('OpeningsService', function ($http, $rootScope, $routeParams) {
         ];
     };
 
-    this.getOpenings = function (successCallback, errorCallback) {
+    this.unsetGroups = function () {
+        
+        this.unsetLearningGroup();
+        $rootScope.groups = undefined;
+    }; 
+
+    this.setOpenings = function (successCallback, errorCallback) {
         if ($rootScope.openings) {
             if (successCallback)
                 successCallback($rootScope.openings);
@@ -58,6 +64,10 @@ app.service('OpeningsService', function ($http, $rootScope, $routeParams) {
     this.setLearningGroup = function(learningGroup) {
         console.log("setting: " + learningGroup);
         $rootScope.learningGroup = learningGroup;
+    }
+
+    this.unsetLearningGroup = function() {
+        $rootScope.learningGroup = undefined;
     }
 
 });

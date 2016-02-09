@@ -25,7 +25,7 @@
 
 <body>
 
-    <div class="index">
+    <div class="index" ng-if="groups != undefined">
         <div class="groups">
             <h3>Groups</h3>
             
@@ -74,6 +74,7 @@
     <script src="services/users_service.js"></script>
 
 
+    <script src="controllers/landing_controller.js"></script>
     <script src="controllers/index_controller.js"></script>
     <script src="controllers/learning_controller.js"></script>
     <script src="controllers/training_controller.js"></script>

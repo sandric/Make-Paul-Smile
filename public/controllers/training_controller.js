@@ -1,10 +1,10 @@
 app.controller('TrainingController', function ($scope, $routeParams, OpeningsService) {
 
-	OpeningsService.getGroups();
+	OpeningsService.setGroups();
 
     OpeningsService.setLearningGroup($routeParams.group_name);
 
-    OpeningsService.getOpenings(
+    OpeningsService.setOpenings(
                                 function(openings) {
 
                                     $scope.trainingOpenings = OpeningsService.getOpeningsByGroup($routeParams.group_name);

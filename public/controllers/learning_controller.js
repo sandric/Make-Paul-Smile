@@ -1,8 +1,8 @@
 app.controller('LearningController', function ($scope, $routeParams, OpeningsService) {
 
-    OpeningsService.getGroups();
+    OpeningsService.setGroups();
 
-    OpeningsService.getOpenings(
+    OpeningsService.setOpenings(
         function(openings) {
 
             $scope.opening = OpeningsService.getOpening($routeParams.opening_name);
