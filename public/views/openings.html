@@ -13,3 +13,19 @@
 	</ul>
 
 </div>
+
+
+<div class="game">
+
+	<div ng-switch on="learningGroup">
+	    <div ng-switch-when="unmatcable">
+	    	<h1>Click on group name to list openings,<br/>
+	    	or click on train button near to start training.</h1>
+	    </div>
+	    <div ng-switch-default>
+	    	<h1>{{ learningGroup }} group<h1/>
+	        <h2>Click on opening in list to learn opening from<h2/>
+	    </div>
+	</div>
+
+</div>
