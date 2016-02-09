@@ -1,23 +1,127 @@
 body {
-	margin-top: 50px;
+	margin: 20px;
+}
+
+.index {
+	width: 250px;
+    float: left;
+
+    margin-right: 20px;
+}
+
+.main {
+	overflow: hidden;
 }
 
 .openings {
-	float: left;
-	margin-right: 20px;
 	margin-top: 65px;
 }
 
-.game {
+.game h2 {
+	text-align: center;
+}
+
+.game #board{
+	width: 400px;
+	height: 400px;
+
+	position: relative;
+}
+
+.game.learning #board {
+	margin: 0 auto;
+}
+
+.game.training #board {
 	float: left;
 }
 
-.game #board {
-	width: 400px;
-	height: 400px;
+.game.training .openingsLeft {
 	float: left;
-	position: relative;
+	margin-left: 20px;
 }
+
+.game #control {
+    margin: 1em auto;
+    font-size: small;
+    width: 400px;
+}
+
+.game.training #control {
+    float: left;
+}
+
+
+
+.game #control .buttons {
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.game #control .buttons .button {
+	float: left;
+	background-color: grey;
+	width: 4em;
+	margin-right: 1em;
+	padding: 2pt 5pt;
+	color: white;
+	text-align: center;
+}
+
+
+
+.game #control .buttons .enabled {
+	background-color: blue;
+}
+
+.game #control .buttons .enabled:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.game #control .buttons:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.game #control .buttons.selected {
+	display: block;
+}
+
+.game #control .buttons #openingsLeftLabel {
+	margin-right: 1em;
+}
+
+.game #control .buttons #ratingLabel {
+	margin-right: 1em;
+}
+
+.game #control #info {
+	margin-top: 10pt;
+	text-align: center;
+}
+
+.game #control #moves {
+	margin-top: 10pt;
+}
+
+.game #control #moves .move {
+	clear: both;
+}
+
+.game #control #moves .move .white {
+	float: left;
+	padding-right: 1em;
+}
+
+.game #control #moves .move .black {
+	float: right;
+	padding-left: 1em;
+}
+
+
+
 
 .game #board .cell {
 	width: 50px;
@@ -53,75 +157,4 @@ body {
 	box-sizing: border-box;
 	width: 100px;
 	height: 100px;
-}
-
-.game #control {
-	float: left;
-	margin-left: 2em;
-	font-size: small;
-	width: 200pt;
-}
-
-.game #control .buttons {
-	text-align: center;
-	box-sizing: border-box;
-}
-
-.game #control .buttons .button {
-	float: left;
-	background-color: grey;
-	width: 4em;
-	margin-right: 1em;
-	padding: 2pt 5pt;
-	color: white;
-	text-align: center;
-}
-
-.game #control .buttons .enabled {
-	background-color: blue;
-}
-
-.game #control .buttons .enabled:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.game #control .buttons:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-
-.game #control .buttons.selected {
-	display: block;
-}
-
-.game #control .buttons #openingsLeftLabel {
-	margin-right: 1em;
-}
-
-.game #control .buttons #ratingLabel {
-	margin-right: 1em;
-}
-
-.game #control #info {
-	margin-top: 10pt;
-}
-
-.game #control #moves {
-	margin-top: 10pt;
-}
-
-.game #control #moves .move {
-	clear: both;
-}
-
-.game #control #moves .move .white {
-	float: left;
-	padding-right: 1em;
-}
-
-.game #control #moves .move .black {
-	float: right;
-	padding-left: 1em;
 }

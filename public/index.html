@@ -6,7 +6,7 @@
 
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    
+
 
     <title>Make Paul Smile</title>
 
@@ -19,14 +19,35 @@
 
     <link href="bootstrap.css" rel="stylesheet">
 
-    <link href="game.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
 
 </head>
 
 <body>
 
+    <div class="index">
+        <div class="groups">
+            <h3>Groups</h3>
+            
+            <ul>
+                <li class="group" ng-repeat="group in groups"> 
+                    <a href="#/{{group}}/"> {{ group }} </a> 
+                    <a href="#/{{group}}/train"> train </a>      
+                </li>
+            </ul>
+        </div>
 
-    <div ng-view></div>
+        <div class="openings" ng-if="learningGroup != undefined">
+            <h3>Openings</h3>
+            <ul>
+                <li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
+                    <a href="#/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main" ng-view></div>
 
 
     <script src="chess/Controllers/learning_controller.js"></script>
@@ -53,7 +74,7 @@
     <script src="services/users_service.js"></script>
 
 
-    <script src="controllers/openings_controller.js"></script>
+    <script src="controllers/index_controller.js"></script>
     <script src="controllers/learning_controller.js"></script>
     <script src="controllers/training_controller.js"></script>
     <script src="controllers/results_controller.js"></script>

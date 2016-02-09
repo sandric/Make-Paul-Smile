@@ -57,7 +57,4 @@ app.service('OpeningsService', function ($http, $rootScope) {
         $rootScope.learningGroup = learningGroup;
     }
 
-
-
-    $rootScope.learningGroup = 'Flank';
 });

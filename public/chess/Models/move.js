@@ -19,9 +19,9 @@ class Move {
 
 	getRelativeNotation() {
 		if (this._number % 2 == 1)
-		        return Math.floor(this._number / 2) + 1 + ". " + this.getNotation() + "; ";
+		        return Math.floor(this._number / 2) + 1 + ". " + this.getNotation();
 		    else
-		        return this.getNotation() + ". ";
+		        return "... " + this.getNotation() + ".";
 	}
 
 	static getCellPositionsFromNotation(notation) {

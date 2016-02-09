@@ -1,19 +1,19 @@
 app.config(function ($routeProvider) {
     $routeProvider
 
-        .when('/groups/:group_name?',
+        .when('/:group_name?',
             {
-                controller: 'OpeningsController',
-                templateUrl: '/views/openings.html'
+                controller: 'IndexController',
+                templateUrl: '/views/index.html'
             })
 
-        .when('/groups/:group_name/learn/:opening_name',
+        .when('/:group_name/learn/:opening_name',
             {
                 controller: 'LearningController',
                 templateUrl: '/views/learning.html'
             })
 
-        .when('/groups/:group_name/train',
+        .when('/:group_name/train',
             {
                 controller: 'TrainingController',
                 templateUrl: '/views/training.html'
@@ -37,5 +37,5 @@ app.config(function ($routeProvider) {
                 templateUrl: '/views/user.html'
             })
 
-        .otherwise({ redirectTo: '/groups/' });
+        .otherwise({ redirectTo: '/' });
 });

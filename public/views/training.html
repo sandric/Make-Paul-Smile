@@ -1,17 +1,18 @@
-<div class="openings">
-	<ul>
-		<li class="opening" ng-repeat="opening in trainingOpenings"> 
-			{{ opening.name }} 
-		</li>
-	</ul>
-</div>
+<div class="game training">
 
-
-<div class="game">
-
-	<h1></h1>
+	<h2></h2>
 
 	<div id="board"></div>
+
+
+	<div class="openingsLeft">
+		<h3>Openings left</h3>
+		<ul>
+			<li class="openingLeft" ng-repeat="opening in trainingOpenings"> 
+				{{ opening.name }} 
+			</li>
+		</ul>
+	</div>
 
 	<div id="control">
 
@@ -23,7 +24,7 @@
 		</div>
 
 
-		<div class="buttons" id="training_buttons">
+		<div class="buttons">
 			<div class="button button-end enabled">End</div>
 			<div class="button button-skip enabled">Skip</div>
 			<div class="button button-hint enabled">Hint</div>
@@ -32,4 +33,5 @@
 		<div id="info"></div>
 		<div id="moves"></div>
 	</div>
+
 </div>

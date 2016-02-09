@@ -52,8 +52,8 @@ class TrainingController {
 		
 		this._openings.splice(randomIndex, 1);
 
-		if ($('.opening')[randomIndex])
-			$('.opening')[randomIndex].remove();
+		if ($('.openingLeft')[randomIndex])
+			$('.openingLeft')[randomIndex].remove();
 	}
 
 
@@ -76,13 +76,13 @@ class TrainingController {
 
 
 	displayOpeningsLeftLabel() {
-		$("#openingsLeftLabel").html(this._openings.length + 1);
+		$("#openingsLeftLabel").html(this._openings.length);
 	}
 
 
 
 	displayOpeningsName() {
-		$(".game h1").html("Training " + this._opening.name)
+		$(".game h2").html(this._opening.name)
 	}
 
 

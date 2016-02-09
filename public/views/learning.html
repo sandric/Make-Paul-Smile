@@ -1,30 +1,14 @@
-<div class="openings">
-	<ul>
-		<li class="group" ng-repeat="group in groups"> 
-			<a href="#/groups/{{group}}/"> {{ group }} </a> 
-			<a href="#/groups/{{group}}/train"> train </a>    	
-		</li>
-	</ul>
+<div class="game learning">
 
-	<ul>
-		<li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
-			<a href="#/groups/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
-		</li>
-	</ul>
-</div>
-
-
-<div class="game">
-
-	<h1>{{ opening.name }}</h1>
+	<h2>{{ opening.name }}</h2>
 
 	<div id="board"></div>
 
 	<div id="control">
-		<div class="buttons" id="learning_buttons">
-			<div class="button button-reload enabled">Reload</div>
-			<div class="button button-play enabled">Play</div>
-			<div class="button button-step enabled">Step</div>
+		<div class="buttons">
+			<span class="button button-reload enabled">Reload</span>
+			<span class="button button-play enabled">Play</span>
+			<span class="button button-step enabled">Step</span>
 		</div>
 
 		<div id="info"></div>

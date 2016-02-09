@@ -1,0 +1,10 @@
+<div ng-switch on="learningGroup">
+    <div ng-switch-when="undefined">
+    	<h3>Click on group name to list openings
+    	or click on train button near to start training.</h3>
+    </div>
+    <div ng-switch-default>
+    	<h2>{{ learningGroup }} group<h2/>
+        <h3>Click on opening in list to learn opening from<h3/>
+    </div>
+</div>
