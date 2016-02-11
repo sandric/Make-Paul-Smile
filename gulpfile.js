@@ -17,4 +17,4 @@ gulp.task('watcher', function() {
 });
 
 
-gulp.task('default', ['watcher']);
+gulp.task('default', ['scripts', 'watcher']);

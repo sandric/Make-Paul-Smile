@@ -24,13 +24,12 @@ System.register(['angular2/core', './openings.component'], function(exports_1) {
                     this.groups = ["Open", "Semi-open", "Closed", "Semi-closed", "Indian-defence", "Flank"];
                 }
                 GroupsComponent.prototype.onClick = function (value) {
-                    console.log(value);
                     this.selectedGroup = value;
                 };
                 GroupsComponent = __decorate([
                     core_1.Component({
                         selector: 'groups',
-                        template: "\n    \t<h2>Groups</h2>\n\n    \t<ul class = \"groups\">\n    \t\t<li (click)=\"onClick(group)\" *ngFor=\"#group of groups\">{{ group }} </li>\n    \t</ul>\n\n    \t<openings *ngIf=\"selectedGroup\" [selectedGroup]=\"selectedGroup\"></openings>\n    ",
+                        template: "\n    \t<h2>Groups</h2>\n\n    \t<ul>\n    \t\t<li (click)=\"onClick(group)\" *ngFor=\"#group of groups\">{{ group }} </li>\n    \t</ul>\n\n    \t<openings *ngIf=\"selectedGroup\" [selectedGroup]=\"selectedGroup\" class=\"openings\"></openings>\n    ",
                         directives: [openings_component_1.OpeningsComponent]
                     }), 
                     __metadata('design:paramtypes', [])

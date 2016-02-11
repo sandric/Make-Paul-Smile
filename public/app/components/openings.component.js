@@ -23,7 +23,7 @@ System.register(['angular2/core'], function(exports_1) {
                 OpeningsComponent = __decorate([
                     core_1.Component({
                         selector: 'openings',
-                        template: "\n    \t<h2>{{selectedGroup}} Openings</h2>\n\n    \t<ul class = \"openings\">\n    \t\t<li *ngFor=\"#opening of openings\">{{ opening }}</li>\n    \t</ul>\n    ",
+                        template: "\n    \t<h2>{{selectedGroup}} Openings</h2>\n\n    \t<ul>\n    \t\t<li *ngFor=\"#opening of openings\">{{ opening }}</li>\n    \t</ul>\n    ",
                         inputs: ['selectedGroup']
                     }), 
                     __metadata('design:paramtypes', [])

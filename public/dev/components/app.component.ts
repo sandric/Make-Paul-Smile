@@ -6,7 +6,7 @@ import {GroupsComponent} from './groups.component'
     selector: 'MPS',
     template: `
     	<h1>Make Paul Smile</h1>
-    	<groups></groups>
+    	<groups class="groups"></groups>
     `,
     directives: [GroupsComponent]
 })

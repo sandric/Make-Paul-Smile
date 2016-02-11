@@ -25,7 +25,7 @@ System.register(['angular2/core', './groups.component'], function(exports_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'MPS',
-                        template: "\n    \t<h1>Make Paul Smile</h1>\n    \t<groups></groups>\n    ",
+                        template: "\n    \t<h1>Make Paul Smile</h1>\n    \t<groups class=\"groups\"></groups>\n    ",
                         directives: [groups_component_1.GroupsComponent]
                     }), 
                     __metadata('design:paramtypes', [])

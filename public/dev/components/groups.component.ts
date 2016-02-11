@@ -7,11 +7,11 @@ import {OpeningsComponent} from './openings.component'
     template: `
     	<h2>Groups</h2>
 
-    	<ul class = "groups">
+    	<ul>
     		<li (click)="onClick(group)" *ngFor="#group of groups">{{ group }} </li>
     	</ul>
 
-    	<openings *ngIf="selectedGroup" [selectedGroup]="selectedGroup"></openings>
+    	<openings *ngIf="selectedGroup" [selectedGroup]="selectedGroup" class="openings"></openings>
     `,
     directives: [OpeningsComponent]
 })
@@ -22,8 +22,6 @@ export class GroupsComponent {
 	groups:string[] = ["Open", "Semi-open", "Closed", "Semi-closed", "Indian-defence", "Flank"];
 
 	onClick(value:string) {
-		console.log(value);
-
 		this.selectedGroup = value;
 	}
 }

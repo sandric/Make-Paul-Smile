@@ -5,7 +5,7 @@ import {Component} from 'angular2/core';
     template: `
     	<h2>{{selectedGroup}} Openings</h2>
 
-    	<ul class = "openings">
+    	<ul>
     		<li *ngFor="#opening of openings">{{ opening }}</li>
     	</ul>
     `,
