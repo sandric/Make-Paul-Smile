@@ -1,89 +1,37 @@
-<!doctype html>
+<html>
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
 
-<html ng-app="MKSApp">
-<head>
-    <meta charset="utf-8">
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="/scripts/es6-shim/es6-shim.min.js"></script>
+    <script src="/scripts/systemjs/dist/system-polyfills.js"></script>
 
+    <script src="/scripts/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="/scripts/systemjs/dist/system.src.js"></script>
+    <script src="/scripts/rxjs/bundles/Rx.js"></script>
+    <script src="/scripts/angular2/bundles/angular2.dev.js"></script>
 
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
 
+  </head>
 
-    <title>Make Paul Smile</title>
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-
-    <script src="jquery.js"></script>
-
-
-
-    <link href="bootstrap.css" rel="stylesheet">
-
-    <link href="main.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div class="index" ng-if="groups != undefined">
-        <div class="groups">
-            <h3>Groups</h3>
-            
-            <ul>
-                <li class="group" ng-repeat="group in groups"> 
-                    <a href="#/groups/{{group}}/"> {{ group }} </a> 
-                    <a href="#/groups/{{group}}/train"> train </a>      
-                </li>
-            </ul>
-        </div>
-
-        <div class="openings" ng-if="learningGroup != undefined">
-            <h3>Openings</h3>
-            <ul>
-                <li class="opening" ng-repeat="opening in openings | filter:{'group':learningGroup}"> 
-                    <a href="#/groups/{{learningGroup}}/learn/{{opening.name}}"> {{ opening.name }} </a> 
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="main" ng-view></div>
-
-
-    <script src="chess/Controllers/learning_controller.js"></script>
-    <script src="chess/Controllers/training_controller.js"></script>
-
-    <script src="chess/Models/board.js"></script>
-    <script src="chess/Models/cell.js"></script>
-    <script src="chess/Models/move.js"></script>
-    <script src="chess/Models/opening.js"></script>
-    <script src="chess/Models/piece.js"></script>
-    <script src="chess/Models/ruler.js"></script>
-
-
-    <script src="chess/Views/board_view.js"></script>
-    <script src="chess/Views/cell_view.js"></script>
-
-
-
-    <script src="app.js"></script>
-    <script src="router.js"></script>
-
-    <script src="services/openings_service.js"></script>
-    <script src="services/game_service.js"></script>
-    <script src="services/users_service.js"></script>
-
-
-    <script src="controllers/landing_controller.js"></script>
-    <script src="controllers/index_controller.js"></script>
-    <script src="controllers/learning_controller.js"></script>
-    <script src="controllers/training_controller.js"></script>
-    <script src="controllers/results_controller.js"></script>
-    <script src="controllers/top_controller.js"></script>
-    <script src="controllers/user_controller.js"></script>
-
-
-
-
-</body>
 </html>

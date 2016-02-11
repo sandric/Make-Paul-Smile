@@ -217,6 +217,9 @@ app.get('/api/openings', function(req, res) {
 })
 
 
+app.use('/scripts', express.static(__dirname + '/node_modules'));
+
+
 app.get('*', function(req, res) {
     res.sendfile('./public/index.html');
 });
