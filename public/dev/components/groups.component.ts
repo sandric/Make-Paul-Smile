@@ -1,6 +1,10 @@
 import {Component} from 'angular2/core';
+
+import {ROUTER_DIRECTIVES} from 'angular2/router'
+
 import {OpeningsComponent} from './openings.component'
 
+import {OpeningsService} from '../services/openings.service'
 
 @Component({
     selector: 'groups',
@@ -8,18 +12,28 @@ import {OpeningsComponent} from './openings.component'
     	<h2>Groups</h2>
 
     	<ul>
-    		<li (click)="onClick(group)" *ngFor="#group of groups">{{ group }} </li>
+    		<li *ngFor="#group of groups">
+    			<a [routerLink]="['Openings', {group: group}]"> {{ group }} </a> 
+    		</li>
     	</ul>
 
-    	<openings *ngIf="selectedGroup" [selectedGroup]="selectedGroup" class="openings"></openings>
+    	<router-outlet></router-outlet>
     `,
-    directives: [OpeningsComponent]
+    directives: [OpeningsComponent, ROUTER_DIRECTIVES]
 })
 export class GroupsComponent { 
 
 	selectedGroup:string;
 
-	groups:string[] = ["Open", "Semi-open", "Closed", "Semi-closed", "Indian-defence", "Flank"];
+	groups:string[];
+
+	constructor(private _openingsService:OpeningsService) {}
+
+
+	ngOnInit():any {
+		this.groups = this._openingsService.getGroups();
+	}
+
 
 	onClick(value:string) {
 		this.selectedGroup = value;
