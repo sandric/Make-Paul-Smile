@@ -9,26 +9,28 @@ System.register(['angular2/core'], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AppComponent;
+    var OpeningsComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
+            OpeningsComponent = (function () {
+                function OpeningsComponent() {
+                    this.openings = ["Open", "Semi-open", "Closed", "Semi-closed", "Indian-defence", "Flank"];
                 }
-                AppComponent = __decorate([
+                OpeningsComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: '<h1>My App</h1>'
+                        selector: 'openings',
+                        template: "\n    \t<h2>{{selectedGroup}} Openings</h2>\n\n    \t<ul class = \"openings\">\n    \t\t<li *ngFor=\"#opening of openings\">{{ opening }}</li>\n    \t</ul>\n    ",
+                        inputs: ['selectedGroup']
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], OpeningsComponent);
+                return OpeningsComponent;
             })();
-            exports_1("AppComponent", AppComponent);
+            exports_1("OpeningsComponent", OpeningsComponent);
         }
     }
 });
