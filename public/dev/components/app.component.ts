@@ -4,6 +4,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
 import {OpeningsComponent} from './openings.component'
 import {ResultsComponent} from './results.component'
+import {LearningComponent} from './learning.component'
+
 
 
 
@@ -23,7 +25,8 @@ import {ResultsComponent} from './results.component'
 })
 @RouteConfig([
 	{path: "/results/:lastname", name: "Results", component: ResultsComponent},
-	{path: "/groups/", name: "OpeningsIndex", component: OpeningsComponent},
-	{path: "/groups/:group", name: "Openings", component: OpeningsComponent}
+	{path: "/openings/", name: "OpeningsIndex", component: OpeningsComponent},
+	{path: "/openings/:group", name: "Openings", component: OpeningsComponent},
+	{path: "/learning/:opening", name: "Learning", component: LearningComponent}
 ])
 export class AppComponent {}
