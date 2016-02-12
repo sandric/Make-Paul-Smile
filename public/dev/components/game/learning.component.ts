@@ -4,6 +4,11 @@ import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {OpeningsComponent} from './openings.component';
 
 
+import {OpeningsService} from '../../services/openings.service'
+
+import {Opening} from "../../interfaces/opening.interface";
+
+
 declare var LearningController:any;
 
 
@@ -14,12 +19,12 @@ declare var LearningController:any;
     	   	<openings [group]></openings>
     	</div>
 
-    	<div *ngIf="opening" class="main">
+    	<div *ngIf="openingName" class="main">
     		<div class="game learning">
 
-				<h2>{{ opening.name }}</h2>
+				<h2>{{ openingName }}</h2>
 
-				<div id="board">olaola</div>
+				<div id="board"></div>
 
 				<div id="control">
 					<div class="buttons">
@@ -34,7 +39,7 @@ declare var LearningController:any;
 			</div>
     	</div>
 
-    	<div *ngIf="!opening" class="main">
+    	<div *ngIf="!openingName" class="main">
     		<h1>Select opening to learn.</h1>
     	</div>
     `,
@@ -45,24 +50,53 @@ export class LearningComponent {
 
 	group:string = "";
 
-	opening:string = "";
+	openingName:string = "";
 
-	constructor(private _router:Router, private _routeParams: RouteParams) {}
+	opening:Opening;
+
+
+	createLearningGame() {
+		new LearningController(
+                                this.opening.name,
+                                this.opening.moves,
+                                this.opening.annotations,
+                                this.opening.starting_move,
+                                this.opening.details,
+                                this.opening.group
+                                );
+	}
+
+
+
+	getOpeningByName(openings:Opening[]) {
+		return openings.filter(opening => opening.name == this.openingName)[0];
+	}
+
+	initializeOpening(openings) {
+		this.opening = this.getOpeningByName(openings);
+		this.createLearningGame();
+	}
+
+
+	constructor(private _router:Router, private _routeParams: RouteParams, private _openingsService:OpeningsService) {}
+
 
 	ngOnInit():any {
 		this.group = this._routeParams.get('group');
-		this.opening = this._routeParams.get('opening');
+		this.openingName = this._routeParams.get('opening');
 	}
 
+
 	ngAfterViewInit():any {
-		if (this.opening)
-			new LearningController(
-                                    "Portuguese Opening",
-                                    ["e2 - e4","c7 - c5","Ng1 - f3","c5 - c4","d2 - d4","c4 - c3"],
-                                    ["first","second","third","fourth","fifth","sixth"],
-                                    1,
-                                    "trulala",
-                                    "Open"
-                                );
+		if (this._openingsService.openings)
+            this.initializeOpening(this._openingsService.openings);
+        else 
+            this._openingsService.fetchOpenings()
+                .subscribe(
+                    openings => this.initializeOpening(openings),
+                    error => console.log(error),
+                    () => console.log('Done getting opening')
+                );
 	}
+	
 }
