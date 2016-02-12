@@ -2,10 +2,10 @@ import {Component} from 'angular2/core';
 
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
-import {OpeningsComponent} from './openings.component'
-import {ResultsComponent} from './results.component'
-import {LearningComponent} from './learning.component'
 
+import {ResultsComponent} from './results.component'
+
+import {GameComponent} from './game/game.component'
 
 
 
@@ -15,18 +15,14 @@ import {LearningComponent} from './learning.component'
     	<h1>Make Paul Smile</h1>
 
     	<a [routerLink]="['Results', {lastname: 'foooo'}]">results</a>
-    	<a [routerLink]="['OpeningsIndex']">openings</a>
-
-    	<div class="main">
-    		<router-outlet></router-outlet>
-    	</div>
+    	<a [routerLink]="['Game']">openings</a>
+    	
+    	<router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
 	{path: "/results/:lastname", name: "Results", component: ResultsComponent},
-	{path: "/openings/", name: "OpeningsIndex", component: OpeningsComponent},
-	{path: "/openings/:group", name: "Openings", component: OpeningsComponent},
-	{path: "/learning/:opening", name: "Learning", component: LearningComponent}
+	{path: "/game/...", name: "Game", component: GameComponent}
 ])
 export class AppComponent {}
