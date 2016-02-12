@@ -13,6 +13,16 @@ body {
 	overflow: hidden;
 }
 
+
+.groups ul {
+	list-style: none;
+}
+
+.groups li.selected {
+	list-style: disc;
+}
+
+
 .openings {
 	margin-top: 65px;
 }

@@ -2,7 +2,6 @@ import {Component} from 'angular2/core';
 
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
-import {GroupsComponent} from './groups.component'
 import {OpeningsComponent} from './openings.component'
 import {ResultsComponent} from './results.component'
 

@@ -16,7 +16,7 @@ import {Opening} from "../interfaces/opening.interface";
 			    <h2>Groups</h2>
 
 		    	<ul>
-		    		<li *ngFor="#group of groups">
+		    		<li *ngFor="#group of groups" [class.selected]="group == selectedGroup">
 		    			<a [routerLink]="['Openings', {group: group}]"> {{ group }} </a> 
 		    		</li>
 		    	</ul>
