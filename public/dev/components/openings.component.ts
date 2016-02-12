@@ -25,24 +25,25 @@ export class OpeningsComponent {
 	openings:Opening[];
 
 
+	filterOpeningsBySelectedGroup(openings:Opening[]) {
+		this.openings = openings.filter(opening => opening.group == this.selectedGroup);
+	}
+
+
 	constructor(private _router:Router, private _routeParams: RouteParams, private _openingsService:OpeningsService) {}
 
 	ngOnInit():any {
 
-		console.log("noooooooo");
-
 		this.selectedGroup = this._routeParams.get('group');
 
 		if (this._openingsService.openings)
-			this.openings = this._openingsService.openings.filter(opening => opening.group == this.selectedGroup);
+			this.filterOpeningsBySelectedGroup(this._openingsService.openings);
 		else 
 			this._openingsService.fetchOpenings()
 				.subscribe(
-					openings => this.openings = openings,
+					openings => this.filterOpeningsBySelectedGroup(openings),
 					error => console.log(error),
-					() => { console.log(this.openings); 
-						this.openings = this.openings.filter(opening => opening.group == this.selectedGroup) 
-					}
+					() => console.log('Done fetching openings')
 				);
 	}
 }
