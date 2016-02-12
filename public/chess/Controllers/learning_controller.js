@@ -7,7 +7,7 @@ class LearningController {
 		this._movesAnnotations = movesAnnotations;
 		this._startingMove = startingMove;
 		this._details = details;
-
+		
 		this.generate();
 	}
 

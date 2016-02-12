@@ -4,7 +4,9 @@
     <base href="/#/">
 
     <title>Angular 2 QuickStart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+
+    <script src="jquery.js"></script> 
 
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
@@ -21,22 +23,45 @@
     <script src="/scripts/angular2/bundles/router.dev.js"></script>
 
 
+
+    <script src="chess/Controllers/learning_controller.js"></script>
+    <script src="chess/Controllers/training_controller.js"></script>
+
+    <script src="chess/Models/board.js"></script>
+    <script src="chess/Models/cell.js"></script>
+    <script src="chess/Models/move.js"></script>
+    <script src="chess/Models/opening.js"></script>
+    <script src="chess/Models/piece.js"></script>
+    <script src="chess/Models/ruler.js"></script>
+
+    <script src="chess/Views/board_view.js"></script>
+    <script src="chess/Views/cell_view.js"></script>
+
+
+
+
+
+
+
     <link href="bootstrap.css" rel="stylesheet">
 
     <link href="main.css" rel="stylesheet">
 
     <!-- 2. Configure SystemJS -->
     <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
+      $(document).ready(function() {
+
+        System.config({
+          packages: {        
+            app: {
+              format: 'register',
+              defaultExtension: 'js'
+            }
           }
-        }
+        });
+        System.import('app/main')
+              .then(null, console.error.bind(console));
       });
-      System.import('app/main')
-            .then(null, console.error.bind(console));
     </script>
   </head>
 

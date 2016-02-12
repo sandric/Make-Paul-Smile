@@ -1,5 +1,6 @@
 class BoardView {
 	constructor(opening, type, delegate) {
+
 		this._opening = opening;
 		this._type = type;
 		this._delegate = delegate;
