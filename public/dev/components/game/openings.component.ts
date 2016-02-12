@@ -5,6 +5,8 @@ import {RouteParams, Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/rout
 
 import {LearningComponent} from './learning.component'
 
+import {TrainingComponent} from './training.component'
+
 import {GameIndexComponent} from './game_index.component'
 
 
@@ -20,8 +22,9 @@ import {Opening} from "../../interfaces/opening.interface";
             <h2>Groups</h2>
 
             <ul>
-                <li *ngFor="#_group of groups" [class.selected]="_group == group">
-                    <a [routerLink]="['LearningIndex', {group: _group}]"> {{ _group }} </a> 
+                <li *ngFor="#_group of groups" [class.selected]="_group == group" class="group">
+                    <a [routerLink]="['LearningIndex', {group: _group}]"> {{ _group }} </a>
+                    <a [routerLink]="['Training', {group: _group}]"> train </a>
                 </li>
             </ul>
         </div>
@@ -30,7 +33,7 @@ import {Opening} from "../../interfaces/opening.interface";
             <h2>{{group}} Openings</h2>
 
             <ul>
-                <li *ngFor="#opening of openings">
+                <li *ngFor="#opening of openings" class="opening">
                     <a [routerLink]="['Learning', {group: group, opening: opening.name}]"> {{ opening.name }} </a>
                 </li>
             </ul>

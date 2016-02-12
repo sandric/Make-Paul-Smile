@@ -88,15 +88,17 @@ export class LearningComponent {
 
 
 	ngAfterViewInit():any {
-		if (this._openingsService.openings)
-            this.initializeOpening(this._openingsService.openings);
-        else 
-            this._openingsService.fetchOpenings()
-                .subscribe(
-                    openings => this.initializeOpening(openings),
-                    error => console.log(error),
-                    () => console.log('Done getting opening')
-                );
+		if (this.openingName) {
+			if (this._openingsService.openings)
+	            this.initializeOpening(this._openingsService.openings);
+	        else 
+	            this._openingsService.fetchOpenings()
+	                .subscribe(
+	                    openings => this.initializeOpening(openings),
+	                    error => console.log(error),
+	                    () => console.log('Done getting opening')
+	                );
+        }
 	}
 	
 }
