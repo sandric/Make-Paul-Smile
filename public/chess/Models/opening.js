@@ -1,12 +1,12 @@
 class Opening {
-    constructor(name, movesNotations, movesAnnotations, startingMove, details) {
+    constructor(name, moves, annotations, startingMove, details) {
 		this._name = name;
-		this._movesNotations = movesNotations;
-		this._movesAnnotations = movesAnnotations;
+		this._moves = moves;
+		this._annotations = annotations;
 		this._startingMove = startingMove;
 		this._details = details;
 
-		this._movesCount = this._movesNotations.length;
+		this._movesCount = this._moves.length;
 		this._movesToPlay = this._movesCount - this._startingMove;
 	}
 
@@ -19,11 +19,11 @@ class Opening {
 	}
 
 	isValid(move) {
-		return (move.getNotation() == this._movesNotations[move.number - 1]) ? true : false;
+		return (move.getNotation() == this._moves[move.number - 1]) ? true : false;
 	}
 
 	getHint() {
-		return Move.getCellPositionsFromNotation(this._movesNotations[Board.currentMoveNumber - 1]);
+		return Move.getCellPositionsFromNotation(this._moves[Board.currentMoveNumber - 1]);
 	}
 
 

@@ -182,7 +182,7 @@ class Board {
     			this._delegate.onPlayerMadeMove();
     		} else {
        			this._delegate.onComputerMadeMove();
-       			this._delegate.displayInfoMessage(this._opening._movesAnnotations[Board.currentMoveNumber - 2]);
+       			this._delegate.displayInfoMessage(this._opening._annotations[Board.currentMoveNumber - 2]);
 
     		}
 

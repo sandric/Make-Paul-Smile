@@ -1,10 +1,10 @@
 class LearningController {
 
-	constructor(name, movesNotations, movesAnnotations, startingMove, details) {
+	constructor(name, moves, annotations, startingMove, details) {
 
 		this._name = name;
-		this._movesNotations = movesNotations;
-		this._movesAnnotations = movesAnnotations;
+		this._moves = moves;
+		this._annotations = annotations;
 		this._startingMove = startingMove;
 		this._details = details;
 		
@@ -23,7 +23,7 @@ class LearningController {
 
         this.movesMade = 0;
 
-        this._opening = new Opening(this._name, this._movesNotations, this._movesAnnotations, this._startingMove, this._details);
+        this._opening = new Opening(this._name, this._moves, this._annotations, this._startingMove, this._details);
 
         this.displayOpeningsName();
 
