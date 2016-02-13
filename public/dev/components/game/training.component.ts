@@ -16,7 +16,7 @@ declare var TrainingController:any;
     selector: 'learning',
     template: `
         <div class="index">
-    	   	<openings [group]></openings>
+    	   	<openings [group]="group" [openingName]="initialRandomOpeningName"></openings>
     	</div>
 		
 		<div class="main">
@@ -59,8 +59,7 @@ declare var TrainingController:any;
 			</div>
 		</div>
     `,
-    directives: [OpeningsComponent, ROUTER_DIRECTIVES],
-    inputs: ['group', 'opening']
+    directives: [OpeningsComponent, ROUTER_DIRECTIVES]
 })
 export class TrainingComponent {
 
@@ -70,15 +69,24 @@ export class TrainingComponent {
 
 	openingsLeft:Opening[];
 
+	initialRandomOpeningIndex:number;
+	initialRandomOpeningName:string;
+
 
 	createTrainingGame() {
-		new TrainingController(this.group, this.openings);
+		this.getInitialRandomOpeningIndex();
+		new TrainingController(this.group, this.openings, this.initialRandomOpeningIndex);
 	}
 
 
     filterOpeningsBySelectedGroup(openings:Opening[]) {
         this.openings = openings.filter(opening => opening.group == this.group);
         this.createTrainingGame();
+    }
+
+    getInitialRandomOpeningIndex() {
+    	this.initialRandomOpeningIndex = Math.floor((Math.random() * this.openings.length));
+    	this.initialRandomOpeningName = this.openings[this.initialRandomOpeningIndex].name;
     }
 
 

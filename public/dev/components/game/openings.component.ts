@@ -33,14 +33,14 @@ import {Opening} from "../../interfaces/opening.interface";
             <h2>{{group}} Openings</h2>
 
             <ul>
-                <li *ngFor="#opening of openings" class="opening">
+                <li *ngFor="#opening of openings" [class.selected]="opening.name == openingName" class="opening">
                     <a [routerLink]="['Learning', {group: group, opening: opening.name}]"> {{ opening.name }} </a>
                 </li>
             </ul>
         </div>
     `,
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['group']
+    inputs: ['group', 'openingName']
 })
 export class OpeningsComponent { 
 

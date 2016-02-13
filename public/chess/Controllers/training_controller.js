@@ -1,13 +1,15 @@
 class TrainingController {
 
 
-	constructor(group, openings) {
+	constructor(group, openings, startingOpeningIndex) {
 		this._score = 0;
+
+		this._startingOpeningIndex = startingOpeningIndex;
 
 		this._group = group;
 		this._openings = openings;
 
-		$("#board").ready(this.generate());
+		this.generate()
 	}
 
 	generate() {
@@ -44,7 +46,14 @@ class TrainingController {
 	
 	getRandomOpening(){
 
-		var randomIndex = Math.floor((Math.random() * this._openings.length));
+		var randomIndex;
+
+		if (this._startingOpeningIndex) {
+			randomIndex = this._startingOpeningIndex;
+			this._startingOpeningIndex = false;
+		}
+		else
+			randomIndex = Math.floor((Math.random() * this._openings.length));
 
 		this._opening = new Opening(this._openings[randomIndex].name,
                                     this._openings[randomIndex].moves,
@@ -54,8 +63,7 @@ class TrainingController {
 		
 		this._openings.splice(randomIndex, 1);
 
-		if ($('.openingLeft')[randomIndex])
-			$('.openingLeft')[randomIndex].remove();
+		$($('.opening:not(.selected)')[randomIndex]).addClass('selected');
 	}
 
 

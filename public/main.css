@@ -18,10 +18,17 @@ body {
 	list-style: none;
 }
 
+.openings ul {
+	list-style: none;
+}
+
 .groups li.selected {
 	list-style: disc;
 }
 
+.openings li.selected {
+	list-style: disc;
+}
 
 .openings {
 	margin-top: 65px;

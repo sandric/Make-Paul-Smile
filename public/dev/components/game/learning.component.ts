@@ -17,7 +17,7 @@ declare var LearningController:any;
     selector: 'learning',
     template: `
     	<div class="index">
-    	   	<openings [group]></openings>
+    	   	<openings [group]="group" [openingName]="openingName"></openings>
     	</div>
 
     	<div *ngIf="openingName" class="main">
@@ -44,8 +44,7 @@ declare var LearningController:any;
     		<h1>Select opening to learn.</h1>
     	</div>
     `,
-    directives: [OpeningsComponent, ROUTER_DIRECTIVES],
-    inputs: ['group']
+    directives: [OpeningsComponent, ROUTER_DIRECTIVES]
 })
 export class LearningComponent {
 

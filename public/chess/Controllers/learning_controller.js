@@ -39,7 +39,6 @@ class LearningController {
 		$(".button-play").on("click", {self: this}, this.onPlayButtonPressed);
 		$(".button-step").on("click", {self: this}, this.onStepButtonPressed);
 
-
 		$(".cell").off('click');
 	}
 
