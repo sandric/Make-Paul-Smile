@@ -90,9 +90,7 @@ app.get('/api/users/:user_id/games/:game_id', function(req, res) {
 	var results =  {
 		group: "Open",
 		score: 17,
-		previous_score: 6,
-		best_username: "Soso",
-		best_score: 19
+		best_score: 6
 	};
 
 	res.json(results);

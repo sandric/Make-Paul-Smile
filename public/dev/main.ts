@@ -8,6 +8,7 @@ import {provide} from 'angular2/core'
 
 import {AppComponent} from './components/app.component'
 
+
 import {OpeningsService} from './services/openings.service'
 
 

@@ -4,7 +4,10 @@ import {RouteParams, Router} from 'angular2/router';
 import {OpeningsComponent} from './openings.component'
 
 
-import {gameResults} from '../../interfaces/gameResults.interface';
+import {ResultsService} from '../../services/results.service';
+
+
+import {Results} from '../../interfaces/results.interface';
 
 
 
@@ -15,39 +18,48 @@ import {gameResults} from '../../interfaces/gameResults.interface';
     		<openings [group]></openings>
     	</div>
 
-		<div class="main">
-			<h2>{{ gameResults.group }} game results:</h2>
+		<div *ngIf = "results" class="main">
+			<h2>{{ results.group }} game results:</h2>
 
 			<div class="results">
 				<div>
 					<label>Total Score:</label>
-					<label>{{ gameResults.score }}</label>
+					<label>{{ results.score }}</label>
 				</div>
 				<div>
-					<label>Previous Score:</label>
-					<label>{{ gameResults.previous_score }}</label>
+					<label>Best Score:</label>
+					<label>{{ results.best_score }}</label>
 				</div>
 			</div>
 		</div>
     `,
+    providers: [ResultsService],
     directives: [OpeningsComponent]
 })
 export class ResultsComponent {
 
 	group:string;
 
-	gameResults:gameResults;
+	results:Results;
 
-	constructor(private _router:Router, private _routeParams: RouteParams) {}
+	constructor(private _router:Router, private _routeParams: RouteParams, private _resultsService:ResultsService) {}
 
 	ngOnInit():any {
 
 		this.group = this._routeParams.get('group');
 
-		this.gameResults = <gameResults> {
+		this._resultsService.fetchResults(7, 7)
+                .subscribe(
+                    results => this.results = results,
+                    error => console.log(error),
+                    () => console.log('Done fetching openings')
+                );
+
+        /*
+		this.gameResults = <Results> {
 			group: this.group,
 			score: 77,
-			previous_score: 88
-		}
+			best_score: 88
+		}*/
 	}
 }

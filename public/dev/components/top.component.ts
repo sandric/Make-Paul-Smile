@@ -1,11 +1,13 @@
 import {Component} from 'angular2/core';
 
-import {TopGame} from '../interfaces/topGame.interface';
+import {TopService} from '../services/top.service';
+
+import {Top} from '../interfaces/top.interface';
 
 @Component({
     template: `
     	<h1>DA TOP:</h1>
-	    <div *ngFor="#game of topGames">
+	    <div *ngFor="#game of top">
 			<div>
 				<label>Username:</label>
 				<label>{{ game.username }}</label>
@@ -19,15 +21,28 @@ import {TopGame} from '../interfaces/topGame.interface';
 				<label>{{ game.score }}</label>
 			</div>
 		</div>
-    `
+    `,
+    providers: [TopService]
 })
 export class TopComponent {
 
-	topGames:TopGame[];
+	top:Top[];
+
+	constructor(private _topService:TopService) {}
+
 
 	ngOnInit():any {
 
-		this.topGames = <TopGame[]>[
+		this._topService.fetchTopGames()
+                .subscribe(
+                    top => this.top = top,
+                    error => console.log(error),
+                    () => console.log('Done fetching openings')
+                );
+
+        /*
+
+		this.top = <Top[]>[
 			{
 				group: "Open",
 				score: 11,
@@ -53,6 +68,6 @@ export class TopComponent {
 				score: 55,
 				username: "soso"
 			},
-		];
+		];*/
 	}
 }
