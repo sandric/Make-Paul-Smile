@@ -9,6 +9,7 @@ import {OpeningsService} from '../../services/openings.service'
 import {Opening} from "../../interfaces/opening.interface";
 
 
+
 declare var LearningController:any;
 
 
@@ -24,7 +25,7 @@ declare var LearningController:any;
 
 				<h2>{{ openingName }}</h2>
 
-				<div id="board"></div>
+				<div id="board">bbboard</div>
 
 				<div id="control">
 					<div class="buttons">
@@ -54,8 +55,9 @@ export class LearningComponent {
 
 	opening:Opening;
 
-
 	createLearningGame() {
+		console.log('creating...');
+		console.log(this.opening);
 		new LearningController(
                                 this.opening.name,
                                 this.opening.moves,
@@ -84,7 +86,9 @@ export class LearningComponent {
 	ngOnInit():any {
 		this.group = this._routeParams.get('group');
 		this.openingName = this._routeParams.get('opening');
+	}
 
+	ngAfterViewInit():any {
 		if (this.openingName) {
 			if (this._openingsService.openings)
 	            this.initializeOpening(this._openingsService.openings);

@@ -8,11 +8,11 @@ class LearningController {
 		this._startingMove = startingMove;
 		this._details = details;
 		
-		$("#board").ready(this.generate());
+		this.generate();
 	}
 
 	generate() {
-
+		
         $(".button-play").addClass('enabled');
         $(".button-step").addClass('enabled');
         $(".button-play").html("Play");
