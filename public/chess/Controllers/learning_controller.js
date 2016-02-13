@@ -8,7 +8,7 @@ class LearningController {
 		this._startingMove = startingMove;
 		this._details = details;
 		
-		this.generate();
+		$("#board").ready(this.generate());
 	}
 
 	generate() {

@@ -7,7 +7,7 @@ class TrainingController {
 		this._group = group;
 		this._openings = openings;
 
-		this.generate();
+		$("#board").ready(this.generate());
 	}
 
 	generate() {

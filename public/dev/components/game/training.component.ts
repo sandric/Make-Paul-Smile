@@ -88,10 +88,7 @@ export class TrainingComponent {
 
 	ngOnInit():any {
 		this.group = this._routeParams.get('group');
-	}
 
-
-	ngAfterViewInit():any {
 		if (this._openingsService.openings)
             this.filterOpeningsBySelectedGroup(this._openingsService.openings);
         else 
@@ -102,5 +99,4 @@ export class TrainingComponent {
                     () => console.log('Done getting opening')
                 );
 	}
-	
 }

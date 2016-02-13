@@ -84,10 +84,7 @@ export class LearningComponent {
 	ngOnInit():any {
 		this.group = this._routeParams.get('group');
 		this.openingName = this._routeParams.get('opening');
-	}
 
-
-	ngAfterViewInit():any {
 		if (this.openingName) {
 			if (this._openingsService.openings)
 	            this.initializeOpening(this._openingsService.openings);
@@ -100,5 +97,4 @@ export class LearningComponent {
 	                );
         }
 	}
-	
 }
