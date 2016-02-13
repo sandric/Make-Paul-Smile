@@ -45,17 +45,8 @@ body {
 	position: relative;
 }
 
-.game.learning #board {
+.game #board {
 	margin: 0 auto;
-}
-
-.game.training #board {
-	float: left;
-}
-
-.game.training .openingsLeft {
-	float: left;
-	margin-left: 20px;
 }
 
 .game #control {
@@ -63,11 +54,6 @@ body {
     font-size: small;
     width: 400px;
 }
-
-.game.training #control {
-    float: left;
-}
-
 
 
 .game #control .buttons {
@@ -136,8 +122,6 @@ body {
 	float: right;
 	padding-left: 1em;
 }
-
-
 
 
 .game #board .cell {

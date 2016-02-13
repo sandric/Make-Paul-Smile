@@ -13,28 +13,17 @@ declare var TrainingController:any;
 
 
 @Component({
-    selector: 'learning',
     template: `
         <div class="index">
     	   	<openings [group]="group" [openingName]="initialRandomOpeningName"></openings>
     	</div>
 		
 		<div class="main">
-			<div class="game training">
+			<div class="game">
 
 				<h2></h2>
 
 				<div id="board"></div>
-
-
-				<div class="openingsLeft">
-					<h3>Openings left</h3>
-					<ul>
-						<li class="openingLeft" *ngFor="#opening of openings"> 
-							{{ opening.name }} 
-						</li>
-					</ul>
-				</div>
 
 				<div id="control">
 

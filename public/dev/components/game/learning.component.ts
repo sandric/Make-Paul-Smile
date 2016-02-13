@@ -14,14 +14,13 @@ declare var LearningController:any;
 
 
 @Component({
-    selector: 'learning',
     template: `
     	<div class="index">
     	   	<openings [group]="group" [openingName]="openingName"></openings>
     	</div>
 
     	<div *ngIf="openingName" class="main">
-    		<div class="game learning">
+    		<div class="game">
 
 				<h2>{{ openingName }}</h2>
 
