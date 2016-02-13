@@ -48,6 +48,8 @@ export class OpeningsComponent {
 
     groups:string[];
 
+    openingName:string = "";
+
     openings:Opening[];
 
 

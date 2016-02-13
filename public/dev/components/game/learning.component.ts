@@ -44,7 +44,7 @@ declare var LearningController:any;
     	</div>
     `,
     directives: [OpeningsComponent, ROUTER_DIRECTIVES],
-    inputs: ['group', 'opening']
+    inputs: ['group']
 })
 export class LearningComponent {
 
