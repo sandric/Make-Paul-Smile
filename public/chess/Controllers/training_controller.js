@@ -1,8 +1,10 @@
 class TrainingController {
 
 
-	constructor(openings) {
+	constructor(group, openings) {
 		this._score = 0;
+
+		this._group = group;
 		this._openings = openings;
 
 		this.generate();
@@ -26,7 +28,7 @@ class TrainingController {
 	}
 
 	endGame() {
-		window.location.href = "#/results/7/7";
+		window.location.href = "/#/game/results/" + this._group;
 	}
 
 

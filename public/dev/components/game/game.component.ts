@@ -9,6 +9,9 @@ import {LearningComponent} from './learning.component'
 
 import {TrainingComponent} from './training.component'
 
+import {ResultsComponent} from './results.component'
+
+
 
 import {OpeningsService} from '../../services/openings.service'
 
@@ -27,6 +30,8 @@ import {Opening} from "../../interfaces/opening.interface";
     {path: "/", name: "OpeningsIndex", component: GameIndexComponent, useAsDefault: true},
     {path: "/learning/:group/", name: "LearningIndex", component: LearningComponent},
     {path: "/learning/:group/:opening", name: "Learning", component: LearningComponent},
-    {path: "/training/:group/", name: "Training", component: TrainingComponent}
+    {path: "/training/:group/", name: "Training", component: TrainingComponent},
+    {path: "/results/:group/", name: "Results", component: ResultsComponent},
+
 ])
 export class GameComponent { }

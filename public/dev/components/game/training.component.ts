@@ -72,7 +72,7 @@ export class TrainingComponent {
 
 
 	createTrainingGame() {
-		new TrainingController(this.openings);
+		new TrainingController(this.group, this.openings);
 	}
 
 
