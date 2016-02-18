@@ -9,7 +9,6 @@ import {OpeningsService} from '../../services/openings.service'
 import {Opening} from "../../interfaces/opening.interface";
 
 
-
 declare var LearningController:any;
 
 
