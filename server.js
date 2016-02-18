@@ -23,7 +23,7 @@ app.use(methodOverride());
 
 app.get('/api/users/:user_id', function(req, res) {
 	var user =  {
-		name: "Tosha",
+		name: "Tosha zbs",
 		best_game: {
 			group: "Flank",
 			score: 54
@@ -31,7 +31,7 @@ app.get('/api/users/:user_id', function(req, res) {
 		best_games_by_group: [
 			{
 				group: "Semi-open",
-				score: 14
+				score: 3
 			},
 			{
 				group: "Semi-closed",
@@ -51,7 +51,7 @@ app.get('/api/users/:user_id', function(req, res) {
 app.get('/api/top', function(req, res) {
 	var top =  [
 		{
-			username: "Soso 1",
+			username: "Soso Pauiashvili 1",
 			group: "Open",
 			score: 17
 		},

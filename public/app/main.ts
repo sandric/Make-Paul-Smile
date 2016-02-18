@@ -1,3 +1,6 @@
+import "zone.js/dist/zone.min.js";
+import "reflect-metadata"
+
 import {bootstrap}    from 'angular2/platform/browser'
 
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router'
