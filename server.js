@@ -29,6 +29,16 @@ app.use(methodOverride());
 app.set('json spaces', 4);
 
 
+app.get('/api/current_user', function(req, res) {
+
+	User.findOne({}, function(err, user) {
+		if (err)
+			res.json(err);
+		else	
+			res.redirect(`/api/users/${user._id}`);
+	});
+});
+
 app.get('/api/users', function(req, res) {
 
 	User.find().select('-__v -games').exec(function (err, users) {

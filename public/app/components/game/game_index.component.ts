@@ -10,7 +10,7 @@ import {OpeningsComponent} from './openings.component'
     	</div>
 
     	<div class="main">
-    		<h3>Click on group to display Opening to learn.</h3>
+    		<h3>Click on group name to display Opening to learn.</h3>
     	</div>
     `,
     directives: [OpeningsComponent]

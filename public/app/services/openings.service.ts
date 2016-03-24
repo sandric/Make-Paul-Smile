@@ -14,7 +14,7 @@ export class OpeningsService {
 
 	constructor(private _http: Http) {}
 
-	getGroups() {
+	getGroupNames() {
 		return ["Open", "Semi-open", "Closed", "Semi-closed", "Indian-defence", "Flank"];
 	}
 

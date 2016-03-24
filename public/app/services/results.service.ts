@@ -12,8 +12,8 @@ export class ResultsService {
 
 	constructor(private _http: Http) {}
 
-	fetchResults(userId, gameId) {
-		return this._http.get('/api/users/' + userId + '/games/' + gameId)
+	fetchResults(gameId) {
+		return this._http.get('/api/games/' + gameId)
 			.map(response => <Results> response.json());
 	}
 }

@@ -1,15 +1,16 @@
 export interface Profile {
 
 	name: string
+	email: string
 	
 	best_game: {
-		group: string
+		groupname: string
 		score: number
 	}
 
-	best_games_by_group: [
+	best_games: [
 		{
-			group: string,
+			groupname: string,
 			score: number
 		}
 	]

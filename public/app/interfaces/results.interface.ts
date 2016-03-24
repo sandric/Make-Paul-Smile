@@ -1,6 +1,6 @@
 export interface Results {
 
-	group: string
+	groupname: string
 	score: number
 	best_score: number
 }

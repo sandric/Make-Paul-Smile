@@ -15,7 +15,7 @@ declare var TrainingController:any;
 @Component({
     template: `
         <div class="index">
-    	   	<openings [group]="group" [openingName]="initialRandomOpeningName"></openings>
+    	   	<openings [groupname]="groupname" [openingName]="initialRandomOpeningName"></openings>
     	</div>
 		
 		<div class="main">
@@ -52,7 +52,7 @@ declare var TrainingController:any;
 })
 export class TrainingComponent {
 
-	group:string = "";
+	groupname:string = "";
 
 	openings:Opening[];
 
@@ -64,12 +64,12 @@ export class TrainingComponent {
 
 	createTrainingGame() {
 		this.getInitialRandomOpeningIndex();
-		new TrainingController(this.group, this.openings, this.initialRandomOpeningIndex);
+		new TrainingController(this.groupname, this.openings, this.initialRandomOpeningIndex);
 	}
 
 
-    filterOpeningsBySelectedGroup(openings:Opening[]) {
-        this.openings = openings.filter(opening => opening.group == this.group);
+    filterOpeningsBySelectedGroupName(openings:Opening[]) {
+        this.openings = openings.filter(opening => opening.groupname == this.groupname);
         this.createTrainingGame();
     }
 
@@ -84,14 +84,14 @@ export class TrainingComponent {
 
 
 	ngOnInit():any {
-		this.group = this._routeParams.get('group');
+		this.groupname = this._routeParams.get('groupname');
 
 		if (this._openingsService.openings)
-            this.filterOpeningsBySelectedGroup(this._openingsService.openings);
+            this.filterOpeningsBySelectedGroupName(this._openingsService.openings);
         else 
             this._openingsService.fetchOpenings()
                 .subscribe(
-                    openings => this.filterOpeningsBySelectedGroup(openings),
+                    openings => this.filterOpeningsBySelectedGroupName(openings),
                     error => console.log(error),
                     () => console.log('Done getting opening')
                 );

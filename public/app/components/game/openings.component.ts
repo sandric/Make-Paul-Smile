@@ -22,39 +22,39 @@ import {Opening} from "../../interfaces/opening.interface";
             <h2>Groups</h2>
 
             <ul>
-                <li *ngFor="#_group of groups" [class.selected]="_group == group" class="group">
-                    <a [routerLink]="['LearningIndex', {group: _group}]"> {{ _group }} </a>
-                    <a [routerLink]="['Training', {group: _group}]"> train </a>
+                <li *ngFor="#_groupname of groupnames" [class.selected]="_groupname == groupname" class="group">
+                    <a [routerLink]="['LearningIndex', {groupname: _groupname}]"> {{ _groupname }} </a>
+                    <a [routerLink]="['Training', {groupname: _groupname}]"> train </a>
                 </li>
             </ul>
         </div>
     
-        <div class = "openings" *ngIf="group">
-            <h2>{{group}} Openings</h2>
+        <div class = "openings" *ngIf="groupname">
+            <h2>{{groupname}} Openings</h2>
 
             <ul>
                 <li *ngFor="#opening of openings" [class.selected]="opening.name == openingName" class="opening">
-                    <a [routerLink]="['Learning', {group: group, opening: opening.name}]"> {{ opening.name }} </a>
+                    <a [routerLink]="['Learning', {groupname: groupname, opening: opening.name}]"> {{ opening.name }} </a>
                 </li>
             </ul>
         </div>
     `,
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['group', 'openingName']
+    inputs: ['groupname', 'openingName']
 })
 export class OpeningsComponent { 
 
-    group:string;
+    groupname:string;
 
-    groups:string[];
+    groupnames:string[];
 
     openingName:string = "";
 
     openings:Opening[];
 
 
-    filterOpeningsBySelectedGroup(openings:Opening[]) {
-        this.openings = openings.filter(opening => opening.group == this.group);
+    filterOpeningsBySelectedGroupName(openings:Opening[]) {
+        this.openings = openings.filter(opening => opening.groupname == this.groupname);
     }
 
 
@@ -62,16 +62,16 @@ export class OpeningsComponent {
 
     ngOnInit():any {
 
-        this.groups = this._openingsService.getGroups();
+        this.groupnames = this._openingsService.getGroupNames();
 
-        this.group = this._routeParams.get('group');
+        this.groupname = this._routeParams.get('groupname');
 
         if (this._openingsService.openings)
-            this.filterOpeningsBySelectedGroup(this._openingsService.openings);
+            this.filterOpeningsBySelectedGroupName(this._openingsService.openings);
         else 
             this._openingsService.fetchOpenings()
                 .subscribe(
-                    openings => this.filterOpeningsBySelectedGroup(openings),
+                    openings => this.filterOpeningsBySelectedGroupName(openings),
                     error => console.log(error),
                     () => console.log('Done fetching openings')
                 );

@@ -1,7 +1,7 @@
 export interface Opening {
 
 	name: string
-	group: string
+	groupname: string
 	moves: string[]
 	annotations: string[]
 	starting_move: number

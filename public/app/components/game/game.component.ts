@@ -24,14 +24,14 @@ import {Opening} from "../../interfaces/opening.interface";
         <router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['group']
+    inputs: ['groupname']
 })
 @RouteConfig([
     {path: "/", name: "OpeningsIndex", component: GameIndexComponent, useAsDefault: true},
-    {path: "/learning/:group/", name: "LearningIndex", component: LearningComponent},
-    {path: "/learning/:group/:opening", name: "Learning", component: LearningComponent},
-    {path: "/training/:group/", name: "Training", component: TrainingComponent},
-    {path: "/results/:group/", name: "Results", component: ResultsComponent},
+    {path: "/learning/:groupname/", name: "LearningIndex", component: LearningComponent},
+    {path: "/learning/:groupname/:opening", name: "Learning", component: LearningComponent},
+    {path: "/training/:groupname/", name: "Training", component: TrainingComponent},
+    {path: "/results/:groupname/", name: "Results", component: ResultsComponent},
 
 ])
 export class GameComponent { }

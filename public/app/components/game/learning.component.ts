@@ -15,7 +15,7 @@ declare var LearningController:any;
 @Component({
     template: `
     	<div class="index">
-    	   	<openings [group]="group" [openingName]="openingName"></openings>
+    	   	<openings [groupname]="groupname" [openingName]="openingName"></openings>
     	</div>
 
     	<div *ngIf="openingName" class="main">
@@ -46,7 +46,7 @@ declare var LearningController:any;
 })
 export class LearningComponent {
 
-	group:string = "";
+	groupname:string = "";
 
 	openingName:string = "";
 
@@ -61,7 +61,7 @@ export class LearningComponent {
                                 this.opening.annotations,
                                 this.opening.starting_move,
                                 this.opening.details,
-                                this.opening.group
+                                this.opening.groupname
                                 );
 	}
 
@@ -81,7 +81,7 @@ export class LearningComponent {
 
 
 	ngOnInit():any {
-		this.group = this._routeParams.get('group');
+		this.groupname = this._routeParams.get('groupname');
 		this.openingName = this._routeParams.get('opening');
 	}
 

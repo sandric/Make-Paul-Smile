@@ -16,15 +16,15 @@ import {Profile} from '../interfaces/profile.interface';
 			<div>
 				<label>Best game:</label>
 				<div>
-					<label>{{ profile.best_game.group }}</label>
+					<label>{{ profile.best_game.groupname }}</label>
 					<label>{{ profile.best_game.score }}</label>
 				</div>
 			</div>
 
 			<div>
-				<label>Best games by group:</label>
-				<div *ngFor="#game of profile.best_games_by_group">
-					<label>{{ game.group }}</label>
+				<label>Best games:</label>
+				<div *ngFor="#game of profile.best_games">
+					<label>{{ game.groupname }}</label>
 					<label>{{ game.score }}</label>
 				</div>
 			</div>
@@ -39,44 +39,12 @@ export class ProfileComponent {
 	constructor(private _profileService:ProfileService) {}
 
 	ngOnInit():any {
-		console.log('wut');
 		this._profileService.fetchProfile()
                 .subscribe(
                     profile => this.profile = profile,
                     error => console.log(error),
                     () => console.log('Done fetching profile')
                 );
-
-        /*
-		this.profile = <Profile> {
-			name: "Soso",
-			best_game: {
-				group: "Open",
-				score: 11
-			},
-			best_games_by_group: [
-				{
-					group: "Semi-open",
-					score: 22
-				},
-				{
-					group: "Semi-open",
-					score: 33
-				},
-				{
-					group: "Semi-open",
-					score: 44
-				},
-				{
-					group: "Semi-open",
-					score: 55
-				},
-				{
-					group: "Semi-open",
-					score: 66
-				},
-			]
-		}*/
 	}
 
 }

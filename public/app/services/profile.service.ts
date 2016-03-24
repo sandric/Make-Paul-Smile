@@ -13,7 +13,7 @@ export class ProfileService {
 	constructor(private _http: Http) {}
 
 	fetchProfile() {
-		return this._http.get('/api/users/7')
+		return this._http.get('/api/current_user')
 			.map(response => <Profile> response.json());
 	}
 }

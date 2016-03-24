@@ -1,6 +1,6 @@
 export interface Top {
 
 	username: string
-	group: string
+	groupname: string
 	score: number
 }

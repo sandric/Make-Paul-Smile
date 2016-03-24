@@ -14,7 +14,7 @@ import {Top} from '../interfaces/top.interface';
 			</div>
 			<div>
 				<label>Group:</label>
-				<label>{{ game.group }}</label>
+				<label>{{ game.groupname }}</label>
 			</div>
 			<div>
 				<label>Score:</label>
@@ -39,35 +39,5 @@ export class TopComponent {
                     error => console.log(error),
                     () => console.log('Done fetching openings')
                 );
-
-        /*
-
-		this.top = <Top[]>[
-			{
-				group: "Open",
-				score: 11,
-				username: "soso"
-			},
-			{
-				group: "Open",
-				score: 22,
-				username: "soso"
-			},
-			{
-				group: "Open",
-				score: 33,
-				username: "soso"
-			},
-			{
-				group: "Open",
-				score: 44,
-				username: "soso"
-			},
-			{
-				group: "Open",
-				score: 55,
-				username: "soso"
-			},
-		];*/
 	}
 }

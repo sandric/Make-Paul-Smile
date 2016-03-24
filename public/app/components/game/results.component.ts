@@ -15,11 +15,11 @@ import {Results} from '../../interfaces/results.interface';
     selector: 'results',
     template: `
     	<div class="index">
-    		<openings [group]></openings>
+    		<openings [groupname]></openings>
     	</div>
 
 		<div *ngIf = "results" class="main">
-			<h2>{{ results.group }} game results:</h2>
+			<h2>{{ results.groupname }} game results:</h2>
 
 			<div class="results">
 				<div>
@@ -38,7 +38,7 @@ import {Results} from '../../interfaces/results.interface';
 })
 export class ResultsComponent {
 
-	group:string;
+	groupname:string;
 
 	results:Results;
 
@@ -46,20 +46,13 @@ export class ResultsComponent {
 
 	ngOnInit():any {
 
-		this.group = this._routeParams.get('group');
+		this.groupname = this._routeParams.get('groupname');
 
-		this._resultsService.fetchResults(7, 7)
+		this._resultsService.fetchResults("56f3d0958c4fa8e9803065bf")
                 .subscribe(
                     results => this.results = results,
                     error => console.log(error),
                     () => console.log('Done fetching openings')
                 );
-
-        /*
-		this.gameResults = <Results> {
-			group: this.group,
-			score: 77,
-			best_score: 88
-		}*/
 	}
 }
