@@ -6,21 +6,24 @@ import {Top} from '../interfaces/top.interface';
 
 @Component({
     template: `
-    	<h1>DA TOP:</h1>
-	    <div *ngFor="#game of top">
-			<div>
-				<label>Username:</label>
-				<label>{{ game.username }}</label>
-			</div>
-			<div>
-				<label>Group:</label>
-				<label>{{ game.groupname }}</label>
-			</div>
-			<div>
-				<label>Score:</label>
-				<label>{{ game.score }}</label>
-			</div>
-		</div>
+    	<h1>Top Games:</h1>
+
+		<table class="table">
+			
+			<thead>
+				<th> Group Name </th>
+				<th> Best Score </th>
+				<th> Username </th>
+			</thead>
+
+			<tbody *ngFor="#game of top">
+				<tr>
+					<td> {{ game.groupname }} </td> 
+					<td> {{ game.score }} </td>
+					<td> {{ game.username }} </td>
+				</tr>
+			</tbody>
+		</table>
     `,
     providers: [TopService]
 })

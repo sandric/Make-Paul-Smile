@@ -115,8 +115,20 @@ app.get('/api/top', function(req, res) {
 	Game.topGames(function (err, games) {
   		if (err) 
   			res.json(err);
-  		else
-  			res.json(games);
+  		else {
+
+  			results = [];
+  			
+  			games.forEach(function(game) {
+  				results.push({
+  					groupname: game.groupname,
+  					score: game.score,
+  					username: game.user.name
+  				})
+  			});
+
+  			res.json(results);
+  		}
 	});
 });
 

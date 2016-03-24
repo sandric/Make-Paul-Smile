@@ -7,27 +7,45 @@ import {Profile} from '../interfaces/profile.interface';
 @Component({
     template: `
     	<div *ngIf = "profile" class = "profile">
+
 			<h2>Profile</h2>
 
-			<div>
-				<label>Username:</label>
-				<label>{{ profile.name }}</label>
-			</div>
-			<div>
-				<label>Best game:</label>
-				<div>
-					<label>{{ profile.best_game.groupname }}</label>
-					<label>{{ profile.best_game.score }}</label>
-				</div>
-			</div>
+			<h3>Username: {{ profile.name }}</h3>
 
-			<div>
-				<label>Best games:</label>
-				<div *ngFor="#game of profile.best_games">
-					<label>{{ game.groupname }}</label>
-					<label>{{ game.score }}</label>
-				</div>
-			</div>
+			<h3>Best game:</h3>
+			
+			<table class="table">
+				
+				<thead>
+					<th> Group Name </th>
+					<th> Best Score </th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td> {{ profile.best_game.groupname }} </td> 
+						<td> {{ profile.best_game.score }} </td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Best games:</h3>
+			
+			<table class="table">
+				
+				<thead>
+					<th> Group Name </th>
+					<th> Best Score </th>
+				</thead>
+
+				<tbody *ngFor="#game of profile.best_games">
+					<tr>
+						<td> {{ game.groupname }} </td> 
+						<td> {{ game.score }} </td>
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
     `,
     providers: [ProfileService]
