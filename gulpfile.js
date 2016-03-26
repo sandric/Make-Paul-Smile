@@ -26,10 +26,9 @@ gulp.task('seed', function() {
 
 	
 	return mongoose.connect('mongodb://localhost/makepaulsmile', function() {
-    
-    	mongoose.connection.db.dropDatabase();
-
-    	require('./fixtures.js').seed();
+	   
+	    mongoose.connection.db.dropDatabase();
+	    require('./fixtures.js').seed();
 	});
 })
 

@@ -1,82 +1,15 @@
+var async = require('async');
+
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var Opening = mongoose.model('Opening');
 var User = mongoose.model('User');
 var Game = mongoose.model('Game');
 
 
-function populateGames () {
 
-	User.find(function (err, users) {
-  		if (err) 
-  			res.json(err);
-  		
-  		else {
-
-  			users.forEach(function(user, index) {
-
-				var game = new Game({
-					groupname: "Open",
-					score: index,
-					user: user
-				});
-
-				game.save(function(err, game){});
-
-				var game = new Game({
-					groupname: "Flank",
-					score: index + 1,
-					user: user
-				});
-
-				game.save(function(err, game){});
-
-				var game = new Game({
-					groupname: "Semi-closed",
-					score: 33,
-					user: user
-				});
-
-				game.save(function(err, game){});
-
-				var game = new Game({
-					groupname: "Semi-open",
-					score: 77 + index,
-					user: user
-				});
-
-				game.save(function(err, game){});
-
-				var game = new Game({
-					groupname: "Semi-open",
-					score: 34 + index,
-					user: user
-				});
-
-				game.save(function(err, game){});
-
-
-  			});
-  		}
-	});
-}
-
-function populateUsers () {
-
-	for (var index = 1; index <= 5; index++) {
-
-		var user = new User({
-			name: `user_${index}`,
-			email: `user_${index}@example.com`,
-			games: []
-		});
-
-		user.save(function(err, user){});
-	}
-}
-
-
-function populateOpenings () {
+function populateOpenings (callback) {
 
 	var openingObjects = [
 		{ name: "Portuguese Opening", moves: ["e2 - e4", "c7 - c5", "Ng1 - f3", "c5 - c4", "d2 - d4", "c4 - c3"], annotations: ["first", "second", "third", "fourth", "fifth", "sixth"], starting_move: 1, details: "trulala", groupname: "Open" },
@@ -194,12 +127,105 @@ function populateOpenings () {
 		var opening = new Opening(openingObject);
 		opening.save(function(err, post){});
 	}
+
+	callback();
+}
+
+
+
+
+function populateUser (index, callback) {
+	var user = new User({
+		name: `user_${index}`,
+		games: []
+	});
+
+	var salt = bcrypt.genSaltSync(10);
+	var hash = bcrypt.hashSync(`user_${index}`, salt);
+
+	user.password = hash;
+	user.save(function(err, user){
+
+		console.log(`saved_${user.name}`);
+		
+		if (err) {
+			console.log("DAS ERR")
+			console.log(err);
+		} else {
+
+			populateGames(user, index, callback)
+		}
+	});
+}
+
+function populateUsers (callback) {
+
+	async.eachSeries(
+		[1, 2, 3, 4, 5], 
+		function(index, callback) {
+	  		populateUser(index, callback);
+		},
+		callback);
+}
+
+function populateGames (user, index, callback) {
+
+	console.log(`populating games for user: ${user.name}`);
+
+	async.eachSeries(
+		[
+			new Game({
+				groupname: "Open",
+				score: index,
+				user: user
+			}),
+
+			new Game({
+				groupname: "Flank",
+				score: index + 1,
+				user: user
+			}),
+
+			new Game({
+				groupname: "Semi-closed",
+				score: 33,
+				user: user
+			}),
+
+			new Game({
+				groupname: "Semi-open",
+				score: 77 + index,
+				user: user
+			}),
+
+			new Game({
+				groupname: "Semi-open",
+				score: 34 + index,
+				user: user
+			})
+		],
+		function(game, callback) {
+	  		game.save(function(err, game) {
+
+	  			console.log(`populating game groupname: ${game.groupname} for user: ${user.name}`);
+	  			
+	  			if (err)
+	  				console.log(err)
+	  			else
+	  				callback();
+	  		});
+		},
+		callback
+	);
 }
 
 
 exports.seed = function () {
 
-	populateOpenings();
-	populateUsers();
-	populateGames();
+	async.series([
+		populateOpenings,
+		populateUsers
+	], function () {
+		mongoose.connection.close();
+	});
 }

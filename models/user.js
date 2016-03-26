@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'); 
+
 require('./game.js');
 
 var Game = mongoose.model('Game');
@@ -6,8 +7,11 @@ var Game = mongoose.model('Game');
 
 var UserSchema = new mongoose.Schema({
 
-	name: String, 
-	email: String,
+	name: { 
+    type: String, 
+    unique: true 
+  },
+  password: String, 
 	games: [{ 
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'Game'
@@ -16,7 +20,7 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.methods.bestGame = function (callback) {
 	
-	Game.findOne({user: this}).sort('-score').exec(callback);
+	Game.findOne({user: this}, '-__v -user -_id').sort('-score').exec(callback);
 }
 
 UserSchema.methods.bestGamesByGroup = function (callback) {
@@ -38,7 +42,7 @@ UserSchema.methods.bestGamesByGroup = function (callback) {
                 }
             } 
     	],
-      	callback
+      callback
 	);
 }
 

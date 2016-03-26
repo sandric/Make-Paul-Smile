@@ -6,13 +6,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "~4.7.2",
-    "mongoose": "4.4.9",
-    "morgan": "~1.2.2",
+    "async": "^1.5.2",
     "body-parser": "~1.5.2",
-    "method-override": "~2.1.2"
+    "express": "~4.7.2",
+    "method-override": "~2.1.2",
+    "mongoose": "4.4.9",
+    "mongoose-unique-validator": "^1.0.2",
+    "morgan": "~1.2.2"
   },
   "devDependencies": {
+    "bcrypt": "^0.8.5",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.11.0",
     "jspm": "^0.16.29",
