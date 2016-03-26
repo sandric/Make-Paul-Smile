@@ -1,12 +1,14 @@
 import {Component} from 'angular2/core';
 
-import {ProfileService} from '../services/profile.service';
-
 import {Profile} from '../interfaces/profile.interface';
 
+import {ProfileService} from '../services/profile.service';
+
+
 @Component({
+	selector: 'auth',
     template: `
-    	<h2>Sign Up</h2>
+    	<h2>Introduce yourself, seeker.</h2>
 
 		<div class="signup center-block">
 			<h1>Signup</h1>
@@ -25,13 +27,16 @@ import {Profile} from '../interfaces/profile.interface';
     `,
     providers: [ProfileService]
 })
-export class SignUpComponent {
+export class AuthComponent {
 
 	constructor(private _profileService: ProfileService) { }
 
 	signup(event, username, password) {
 
-		this._profileService.signUp(username, password);
+		this._profileService.signUp(
+			username, 
+			password
+		);
 	}
 
 }

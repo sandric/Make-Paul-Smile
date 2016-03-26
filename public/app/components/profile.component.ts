@@ -22,7 +22,7 @@ import {Profile} from '../interfaces/profile.interface';
 				</thead>
 
 				<tbody>
-					<tr>
+					<tr *ngIf="profile.best_game">
 						<td> {{ profile.best_game.groupname }} </td> 
 						<td> {{ profile.best_game.score }} </td>
 					</tr>
@@ -57,12 +57,16 @@ export class ProfileComponent {
 	constructor(private _profileService:ProfileService) {}
 
 	ngOnInit():any {
+		
+		this._profileService.checkUser();
+
 		this._profileService.fetchProfile()
-                .subscribe(
-                    profile => this.profile = profile,
-                    error => console.log(error),
-                    () => console.log('Done fetching profile')
-                );
+            .subscribe(
+				profile => this.profile = profile,
+				error => console.log(error),
+				() => console.log('Done fetching profile')
+            );
+
 	}
 
 }
