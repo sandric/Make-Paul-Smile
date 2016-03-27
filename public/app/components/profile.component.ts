@@ -66,7 +66,5 @@ export class ProfileComponent {
 				error => console.log(error),
 				() => console.log('Done fetching profile')
             );
-
 	}
-
 }

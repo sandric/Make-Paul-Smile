@@ -13,6 +13,7 @@ import {ProfileService} from '../services/profile.service';
 		<div class="signup center-block">
 			<h1>Signup</h1>
 			<form role="form">
+				<pre class="error">{{error}}</pre>
 				<div class="form-group">
 		    		<label for="username">Username</label>
 		    		<input type="text" #username (keyup)="0" class="form-control" id="username" placeholder="Username">
@@ -30,6 +31,8 @@ import {ProfileService} from '../services/profile.service';
 })
 export class AuthComponent {
 
+	error: string;
+
 	constructor(private _profileService: ProfileService) { }
 
 	signIn(username, password) {
@@ -37,15 +40,19 @@ export class AuthComponent {
 		this._profileService.signIn(
 			username,
 			password
-		);
+		).catch((error) => {
+			this.error = error;
+		});
 	}
 
 	signUp(username, password) {
 
 		this._profileService.signUp(
-			username, 
+			username,
 			password
-		);
+		).catch((error) => {
+			this.error = error;
+		});
 	}
 
 }

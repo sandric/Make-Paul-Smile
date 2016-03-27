@@ -1,6 +1,9 @@
 import {Component} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
 
+import {ProfileService} from '../../services/profile.service';
+
+
 import {OpeningsComponent} from './openings.component'
 
 
@@ -42,9 +45,11 @@ export class ResultsComponent {
 
 	results:Results;
 
-	constructor(private _router:Router, private _routeParams: RouteParams, private _resultsService:ResultsService) {}
+	constructor(private _router: Router, private _routeParams: RouteParams, private _resultsService: ResultsService, private _profileService: ProfileService) { }
 
 	ngOnInit():any {
+
+		this._profileService.checkUser();
 
 		this.groupname = this._routeParams.get('groupname');
 

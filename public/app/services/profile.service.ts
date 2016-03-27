@@ -33,8 +33,6 @@ export class ProfileService {
 
 	isUserLogged() {
 
-		console.log("CHECKING uuu");
-
 		this.restoreUser();
 
 		if (this.userID)
@@ -82,21 +80,26 @@ export class ProfileService {
 		contentHeaders.append('Accept', 'application/json');
 		contentHeaders.append('Content-Type', 'application/json');
 
-		this._http.post('http://localhost:8080/api/sessions', body, { headers: contentHeaders })
-	    	.subscribe(
-	        	response => {
-	          		
-	          		this.userID = response.json().id;
-	          		this.userName = response.json().name;
+		return new Promise((_, reject) => {
 
-	          		this.storeUser();
+			this._http.post('http://localhost:8080/api/sessions', body, { headers: contentHeaders })
+		    	.subscribe(
+		        	response => {
+		          		
+		          		this.userID = response.json().id;
+		          		this.userName = response.json().name;
 
-	          		this._router.navigate(['Profile']);
-	        	},
-	        	error => {
-	          		console.log(error.text);
-	        	}
-	      	);
+		          		this.storeUser();
+
+		          		this._router.navigate(['Profile']);
+		        	},
+		        	error => {
+		          		console.log(error.text());
+
+		          		reject(error.text());
+		        	}
+		      	);
+		}
 	}
 
 	signUp(username, password) {
@@ -108,20 +111,26 @@ export class ProfileService {
 		contentHeaders.append('Accept', 'application/json');
 		contentHeaders.append('Content-Type', 'application/json');
 
-		this._http.post('http://localhost:8080/api/users', body, { headers: contentHeaders })
-	    	.subscribe(
-	        	response => {
-	          		
-	          		this.userID = response.json().id;
-	          		this.userName = response.json().name;
+		return new Promise((_, reject) => {
 
-	          		this.storeUser();
+			this._http.post('http://localhost:8080/api/users', body, { headers: contentHeaders })
+		    	.subscribe(
+		        	response => {
+		          		
+		          		this.userID = response.json().id;
+		          		this.userName = response.json().name;
 
-	          		this._router.navigate(['Profile']);
-	        	},
-	        	error => {
-	          		console.log(error.text);
-	        	}
-	      	);
+		          		this.storeUser();
+
+		          		this._router.navigate(['Profile']);
+		        	},
+		        	error => {
+
+		          		console.log(error.text());
+
+	          			reject(error.text());
+		        	}
+		      	);
+	    }
 	}
 }
