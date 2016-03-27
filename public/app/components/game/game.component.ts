@@ -2,6 +2,9 @@ import {Component} from 'angular2/core';
 
 import {RouteParams, Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
+import {ProfileService} from '../../services/profile.service';
+
+
 
 import {GameIndexComponent} from './game_index.component'
 
@@ -34,4 +37,11 @@ import {Opening} from "../../interfaces/opening.interface";
     {path: "/results/:groupname/", name: "Results", component: ResultsComponent},
 
 ])
-export class GameComponent { }
+export class GameComponent { 
+
+    constructor(private _profileService: ProfileService) { }
+
+    ngOnInit(): any {
+        this._profileService.checkUser();
+    }
+}

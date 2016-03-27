@@ -73,6 +73,32 @@ export class ProfileService {
 		this._router.navigate(['Home']);
 	}
 
+	signIn(username, password) {
+
+		let body = JSON.stringify({ username, password });
+
+		let contentHeaders = new Headers();
+		
+		contentHeaders.append('Accept', 'application/json');
+		contentHeaders.append('Content-Type', 'application/json');
+
+		this._http.post('http://localhost:8080/api/sessions', body, { headers: contentHeaders })
+	    	.subscribe(
+	        	response => {
+	          		
+	          		this.userID = response.json().id;
+	          		this.userName = response.json().name;
+
+	          		this.storeUser();
+
+	          		this._router.navigate(['Profile']);
+	        	},
+	        	error => {
+	          		console.log(error.text);
+	        	}
+	      	);
+	}
+
 	signUp(username, password) {
 
 		let body = JSON.stringify({ username, password });

@@ -12,7 +12,7 @@ var GameSchema = new mongoose.Schema({
 
 GameSchema.statics.topGames = function (callback) {
 
-	this.find().sort('-score').select('-__v').limit(5).populate("user", 'name -password -_id').exec(callback);
+	this.find().sort('-score').select('-__v').limit(5).populate("user", 'name').exec(callback);
 }
 
 mongoose.model('Game', GameSchema);

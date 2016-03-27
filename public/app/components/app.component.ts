@@ -20,6 +20,7 @@ import {AuthComponent} from './auth.component'
     	<h1>Make Paul Smile</h1>
 
     	<nav [ngSwitch]="_profileService.isUserLogged()">
+            <h4>{{_profileService.userName}}</h4>
 	    	<a *ngSwitchWhen="true" [routerLink]="['Game']">openings</a>
 	    	<a *ngSwitchWhen="true" [routerLink]="['Profile']">profile</a>
 	    	<a *ngSwitchWhen="true" [routerLink]="['Top']">top</a>

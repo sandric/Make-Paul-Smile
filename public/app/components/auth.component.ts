@@ -12,16 +12,17 @@ import {ProfileService} from '../services/profile.service';
 
 		<div class="signup center-block">
 			<h1>Signup</h1>
-			<form role="form" (submit)="signup($event, username.value, password.value)">
+			<form role="form">
 				<div class="form-group">
 		    		<label for="username">Username</label>
-		    		<input type="text" #username class="form-control" id="username" placeholder="Username">
+		    		<input type="text" #username (keyup)="0" class="form-control" id="username" placeholder="Username">
 		  		</div>
 		  		<div class="form-group">
 		    		<label for="password">Password</label>
-		    		<input type="password" #password class="form-control" id="password" placeholder="Password">
+		    		<input type="password" #password (keyup)="0" class="form-control" id="password" placeholder="Password">
 		  		</div>
-		  		<button type="submit" class="btn btn-default">Submit</button>
+		  		<button (click)="signIn(username.value, password.value)" type="submit" class="btn btn-default">Sign In</button>
+		  		<button (click)="signUp(username.value, password.value)" type="submit" class="btn btn-default">Sign Up</button>
 			</form>
 		</div>
     `,
@@ -31,7 +32,15 @@ export class AuthComponent {
 
 	constructor(private _profileService: ProfileService) { }
 
-	signup(event, username, password) {
+	signIn(username, password) {
+
+		this._profileService.signIn(
+			username,
+			password
+		);
+	}
+
+	signUp(username, password) {
 
 		this._profileService.signUp(
 			username, 
