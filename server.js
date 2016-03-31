@@ -33,6 +33,10 @@ app.set('json spaces', 4);
 
 app.post('/api/sessions/', function(req, res) {
 
+	console.log("HERE:")
+	console.log(req.body)
+	console.log("END:")
+
 	User.findOne({name: req.body.username}, function(err, user) {
 
 		if (err)
@@ -45,9 +49,8 @@ app.post('/api/sessions/', function(req, res) {
 					res.status(500).json("Internal server error");
 				else 
 					if (compared)
-						res.json({
-							name: user.name,
-							id: user._id
+						User.profile(user._id, function(result) {
+							res.json(result);
 						});
 					else
 						res.status(403).json("Password not matches");
@@ -73,9 +76,8 @@ app.post('/api/users', function(req, res) {
 				if (err)
 					res.status(403).json("User name already taken")
 				else
-					res.json({
-						name: user.name,
-						id: user._id
+					User.profile(user._id, function(result) {
+						res.json(result);
 					});
 			});
 		}
@@ -98,58 +100,87 @@ app.get('/api/users', function(req, res) {
 	});
 });
 
+
 app.get('/api/users/:user_id', function(req, res) {
+
+	User.profile(req.params.user_id, function(result) {
+		res.json(result);
+	});
+});
+
+
+
+app.patch('/api/users/:user_id', function(req, res) {
+
+	console.log("params:")
+
+	console.log(req.body)
+
+	console.log("done:")
+
+
+	setTimeout(function() {
+    	console.log('Blah blah blah blah extra-blah');
+    	res.end();
+	}, 1000);
 
 	User.findById(req.params.user_id).exec(function (err, user) {
 
-  		if (err) {
-  			console.log(err);
+		if (err) {
+			console.log(err);
+		} else {
 
-  			res.status(500).json({
-				error: "Internal server error"
-			});
-  		}
-  		else {
- 			user.bestGame(function (err, bestGame) {
-		  		if (err) {
-		  			console.log(err);
+			console.log(user);
 
-		  			res.status(500).json({
-						error: "Internal server error"
-					});
-		  		}
-		  		else
-				  	user.bestGamesByGroup(function (err, bestGames) {
-				  		if (err) {
-				  			console.log(err);
+			if (user) {
 
-				  			res.status(500).json({
-								error: "Internal server error"
-							});
-				  		}
-				  		else {
+				if (req.body.best_games)
 
-				  			result = {
-				  				name: user.name,
-				  				best_games: []
-				  			};
+					req.body.best_games.forEach(function(best_game) {
 
-				  			if (bestGame) {
-				  				result.bestGame = bestGame;
-				  			}
+						console.log(`iterating over ${best_game.groupname} from json`);
 
-				  			bestGames.forEach(function (bestGame) {
-				  				result.best_games.push({
-				  					"groupname": bestGame._id,
-				  					"score": bestGame.score
-				  				})
-				  			});
+						if (best_game.groupname && best_game.score) {
+							
+							Game.find({user: user, groupname: best_game.groupname, score: best_game.score}, function(err, bestGame) {
+								
+								console.log("FOUND for " + best_game.groupname)
 
-				  			res.json(result);
-				  		}
-					});
-			});
-  		}
+								console.log(bestGame)
+
+								if (err) {
+									console.log("ERROR:")
+									console.log(err);
+								} else {
+									if (bestGame.length > 0) {
+										console.log("best game " + best_game.groupname + " exists")
+									} else {
+										console.log("YEPYEPYEP " + best_game.groupname)
+
+										new_best_game = new Game();
+
+										new_best_game.groupname = best_game.groupname
+										new_best_game.score = best_game.score
+										new_best_game.user = user
+
+										new_best_game.save(function(err, res) {
+
+											if (err) {
+												console.log("eee")
+												console.log(err)
+											} else {
+												console.log("rrr")
+												console.log(res)
+											}
+										})
+									}
+								}
+							})	
+						}
+					})
+				
+			}
+		}
 	});
 });
 

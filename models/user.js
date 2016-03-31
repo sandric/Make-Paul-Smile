@@ -46,4 +46,59 @@ UserSchema.methods.bestGamesByGroup = function (callback) {
 	);
 }
 
+UserSchema.statics.profile = function (userID, callback) {
+  this.findById(userID).exec(function (err, user) {
+
+    var result;
+
+    if (err) 
+      console.log(err);
+
+    else {
+
+      result = {
+        id: user._id,
+        name: user.name
+      }
+
+      user.bestGame(function (err, bestGame) {
+          if (err) 
+            console.log(err);
+          
+          else 
+            if (bestGame) {
+
+              result.best_game = bestGame;
+
+              result.best_games = [];
+
+              user.bestGamesByGroup(function (err, bestGames) {
+                if (err)
+                  console.log(err);
+
+                else {
+
+                  if (bestGames)
+                    bestGames.forEach(function (bestGame) {
+                      result.best_games.push({
+                        "groupname": bestGame._id,
+                        "score": bestGame.score
+                      })
+                    });
+
+                  callback(result);
+                }
+              });
+            } else {
+
+              result.best_game = {};
+              result.best_games = [];
+              
+              callback(result);
+            }
+      });
+    }
+  });
+}
+
 mongoose.model('User', UserSchema);
