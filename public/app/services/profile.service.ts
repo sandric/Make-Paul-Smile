@@ -83,23 +83,23 @@ export class ProfileService {
 		return new Promise((_, reject) => {
 
 			this._http.post('http://localhost:8080/api/sessions', body, { headers: contentHeaders })
-		    	.subscribe(
-		        	response => {
-		          		
-		          		this.userID = response.json().id;
-		          		this.userName = response.json().name;
+				.subscribe(
+					response => {
 
-		          		this.storeUser();
+						this.userID = response.json().id;
+						this.userName = response.json().name;
 
-		          		this._router.navigate(['Profile']);
-		        	},
-		        	error => {
-		          		console.log(error.text());
+						this.storeUser();
 
-		          		reject(error.text());
-		        	}
-		      	);
-		}
+						this._router.navigate(['Profile']);
+					},
+					error => {
+						console.log(error.text());
+
+						reject(error.text());
+					}
+				);
+		});
 	}
 
 	signUp(username, password) {
@@ -114,23 +114,23 @@ export class ProfileService {
 		return new Promise((_, reject) => {
 
 			this._http.post('http://localhost:8080/api/users', body, { headers: contentHeaders })
-		    	.subscribe(
-		        	response => {
-		          		
-		          		this.userID = response.json().id;
-		          		this.userName = response.json().name;
+				.subscribe(
+					response => {
 
-		          		this.storeUser();
+						this.userID = response.json().id;
+						this.userName = response.json().name;
 
-		          		this._router.navigate(['Profile']);
-		        	},
-		        	error => {
+						this.storeUser();
 
-		          		console.log(error.text());
+						this._router.navigate(['Profile']);
+					},
+					error => {
 
-	          			reject(error.text());
-		        	}
-		      	);
-	    }
+						console.log(error.text());
+
+						reject(error.text());
+					}
+				);
+		});
 	}
 }

@@ -26,11 +26,11 @@ import {Results} from '../../interfaces/results.interface';
 
 			<div class="results">
 				<div>
-					<label>Total Score:</label>
+					<label>Game score:</label>
 					<label>{{ results.score }}</label>
 				</div>
 				<div>
-					<label>Best Score:</label>
+					<label>Best game score:</label>
 					<label>{{ results.best_score }}</label>
 				</div>
 			</div>
@@ -45,15 +45,13 @@ export class ResultsComponent {
 
 	results:Results;
 
-	constructor(private _router: Router, private _routeParams: RouteParams, private _resultsService: ResultsService, private _profileService: ProfileService) { }
+	constructor(private _router: Router, private _routeParams: RouteParams, private _resultsService: ResultsService) { }
 
 	ngOnInit():any {
 
-		this._profileService.checkUser();
-
 		this.groupname = this._routeParams.get('groupname');
 
-		this._resultsService.fetchResults("56f3d0958c4fa8e9803065bf")
+		this._resultsService.fetchResults()
                 .subscribe(
                     results => this.results = results,
                     error => console.log(error),

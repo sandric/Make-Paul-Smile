@@ -67,7 +67,6 @@ export class TrainingComponent {
 		new TrainingController(this.groupname, this.openings, this.initialRandomOpeningIndex);
 	}
 
-
     filterOpeningsBySelectedGroupName(openings:Opening[]) {
         this.openings = openings.filter(opening => opening.groupname == this.groupname);
         this.createTrainingGame();

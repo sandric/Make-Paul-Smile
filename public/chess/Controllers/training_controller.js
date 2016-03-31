@@ -30,6 +30,9 @@ class TrainingController {
 	}
 
 	endGame() {
+		localStorage.setItem('groupname', this._group)
+		localStorage.setItem('score', this._score)
+
 		window.location.href = "/#/game/results/" + this._group;
 	}
 

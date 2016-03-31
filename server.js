@@ -33,10 +33,6 @@ app.set('json spaces', 4);
 
 app.post('/api/sessions/', function(req, res) {
 
-	console.log("HERE:")
-	console.log(req.body)
-	console.log("END:")
-
 	User.findOne({name: req.body.username}, function(err, user) {
 
 		if (err)
@@ -112,15 +108,7 @@ app.get('/api/users/:user_id', function(req, res) {
 
 app.patch('/api/users/:user_id', function(req, res) {
 
-	console.log("params:")
-
-	console.log(req.body)
-
-	console.log("done:")
-
-
 	setTimeout(function() {
-    	console.log('Blah blah blah blah extra-blah');
     	res.end();
 	}, 1000);
 
@@ -130,24 +118,16 @@ app.patch('/api/users/:user_id', function(req, res) {
 			console.log(err);
 		} else {
 
-			console.log(user);
-
 			if (user) {
 
 				if (req.body.best_games)
 
 					req.body.best_games.forEach(function(best_game) {
 
-						console.log(`iterating over ${best_game.groupname} from json`);
-
 						if (best_game.groupname && best_game.score) {
 							
 							Game.find({user: user, groupname: best_game.groupname, score: best_game.score}, function(err, bestGame) {
 								
-								console.log("FOUND for " + best_game.groupname)
-
-								console.log(bestGame)
-
 								if (err) {
 									console.log("ERROR:")
 									console.log(err);
@@ -155,7 +135,6 @@ app.patch('/api/users/:user_id', function(req, res) {
 									if (bestGame.length > 0) {
 										console.log("best game " + best_game.groupname + " exists")
 									} else {
-										console.log("YEPYEPYEP " + best_game.groupname)
 
 										new_best_game = new Game();
 
@@ -166,10 +145,8 @@ app.patch('/api/users/:user_id', function(req, res) {
 										new_best_game.save(function(err, res) {
 
 											if (err) {
-												console.log("eee")
 												console.log(err)
 											} else {
-												console.log("rrr")
 												console.log(res)
 											}
 										})
@@ -212,6 +189,54 @@ app.get('/api/games/:game_id', function(req, res) {
   		}
   		else
   			res.json(game);
+	});
+});
+
+
+app.post('/api/games', function(req, res) {
+	
+	User.findById(req.body.user_id).exec(function (err, user) {
+
+		if (err) {
+			console.log(err);
+
+			res.status(500).json({
+				error: "Internal server error"
+			});
+
+		} else {
+
+			if (user) {
+
+				var newGame = new Game({
+					groupname: req.body.groupname,
+					score: req.body.score,
+					user: user
+				});
+
+				newGame.save();
+
+				Game.topGame(user, newGame.groupname, function(err, game) {
+
+					if (err) {
+						console.log(err);
+					} else {
+						if (game) {
+							res.json({
+								groupname: newGame.groupname,
+								score: newGame.score,
+								best_score: game.score,
+							});
+						}
+					}
+				});
+
+			} else {
+				res.status(404).json({
+					error: "User with such ID not found"
+				});
+			}
+		}
 	});
 });
 
